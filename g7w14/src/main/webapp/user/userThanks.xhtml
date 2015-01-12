@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core">
+<!-- Created by: Sandro 
+	 Updated by Joseph He-->	
+<h:head> 
+	<h:outputStylesheet library="css" name="userSiteStyle.css"  />
+</h:head>
+
+	<ui:composition template="/templates/userTemplate.xhtml">
+		<ui:define name="content">
+		
+		<h:panelGroup layout="block" styleClass="title">Thank you for buying from MooseBooks</h:panelGroup>
+		
+		<h:outputText rendered="#{not userBean.editable}" >
+			#{userPreferencesManager.redirectHome()}
+		</h:outputText>
+		
+		<h:outputText rendered="#{userBean.editable}" >
+			<h:panelGroup layout="block" styleClass="subtitle">Shipping Information</h:panelGroup> <br/>
+			#{customerManager.getMyInfo()}
+		   		<h:panelGrid columns="2">
+	   			
+		   			<h:outputText value="Title:"/>
+		   			<h:outputText value="#{customerBean.title}"/>
+	
+					<h:outputText value="First Name:"/>
+		   			<h:outputText value="#{customerBean.f_Name}" />
+		   			
+		   			<h:outputText value="Last Name:"/>
+		   			<h:outputText value="#{customerBean.l_Name}" />
+		   			
+		   			<h:outputText value="Email:"/>
+		   			<h:outputText value="#{customerBean.email}" />
+		   			
+		   			<h:outputText value="Address 1:"/>
+		   			<h:outputText value="#{customerBean.address1}" />
+		   			
+		   			<h:outputText value="Address 2:"/>
+		   			<h:outputText value="#{customerBean.address2}" />
+		   			
+		   			<h:outputText value="Country:"/>
+		   			<h:outputText value="#{customerBean.country}" />
+					
+		   			<h:outputText value="Province:"/>
+		   			<h:outputText value="#{customerBean.province}" />
+		   			
+					<h:outputText value="City:"/>
+		   			<h:outputText value="#{customerBean.city}" />
+		   			
+		   			<h:outputText value="Postal Code:"/>
+		   			<h:outputText value="#{customerBean.postal_Code}" />
+		   			
+		   			<h:outputText value="Home Phone:"/>
+		   			<h:outputText value="#{customerBean.home_Phone}" />
+		   			
+		   			<h:outputText value="Cell Phone:"/>
+		   			<h:outputText value="#{customerBean.cell_Phone}"/>
+		   			
+		   			<h:outputText value="Company:"/>
+		   			<h:outputText value="#{customerBean.company}"/> 
+	   		
+		   		</h:panelGrid>
+	  		<br/> <br/>
+	  		<h:panelGroup layout="block" styleClass="subtitle">Final Price</h:panelGroup> <br/>
+	  		<h:outputText value="Shipping and Handling: " styleClass="bold"/> <h:outputText value="FREE!" id="txtfree"/> <br/>
+	  		<h:outputText value="Grand Total: " styleClass="bold" /> 
+		    <h:outputText value="$#{shoppingCartManager.getTotalCost()} " />   
+		    <br/> <br/>
+		</h:outputText>
+		#{shoppingCartManager.resetShoppingCart()}   
+		</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<!-- Created by: Sandro and Ian Ozturk 
+	 Updated by Joseph He-->	
+<h:head> 
+	<h:outputStylesheet library="css" name="userSiteStyle.css"  />
+</h:head>
+	
+	<ui:composition template="/templates/userTemplate.xhtml">
+		<ui:define name="content">
+			<h:panelGroup layout="block" id="title">Your Shopping Cart</h:panelGroup>							
+    		<div class="hide">  
+      			<h:outputText value="#{shoppingCartManager.addItem(param.bookId)}"/>  
+    		</div>
+    		  
+    		<h:form>
+		    <h:dataTable value="#{shoppingCartManager.cart}" var="item" id="table" >
+			    	<h:column>
+			    		<f:facet name="header">
+				    		<h:outputText value="Delete:" 
+			                                styleClass="bold"/>
+			             </f:facet>
+			             <h:selectBooleanCheckbox value="#{item.deletable}" onclick="submit()"/>
+			    	</h:column>
+		          <h:column>
+		             <f:facet name="header">
+		                <h:outputText value="Item Description:" 
+		                              styleClass="bold"/>
+		             </f:facet>
+		             <ui:repeat value="#{bookManager.searchBookById(item.bookId)}" var="book" >
+		             	<h:link value="#{fn:substring(book.title,0,50)}..." outcome="userGetBook?includeViewParams=true">
+		    					<f:param name="bookId" value="#{item.bookId}"/>
+						</h:link><br/>
+		             </ui:repeat>
+		             <ui:repeat value="#{authorManager.getBookAuthors(item.bookId)}" var="item" >
+				     	<h:panelGroup layout="line" id="authorName" styleClass="padding"> by #{item.authorFirstName} #{item.authorLastName} </h:panelGroup> 
+				  	 </ui:repeat><br/> <br/>
+			      </h:column>
+			      
+			      <h:column>
+		             <f:facet name="header">
+		                <h:outputText value="Unit Price:" 
+		                              styleClass="bold"/>
+		             </f:facet>
+		              
+		             <h:outputText value="$#{item.price}" styleClass="padding1"/>
+			      </h:column>
+			      
+			      <h:column>
+		             <f:facet name="header">
+		                <h:outputText value="Quantity:" 
+		                              styleClass="bold"/>
+		             </f:facet>
+		              
+		             <h:inputText value="#{item.quantity}" id="quantity"/> 
+			      </h:column>
+			      
+			      <h:column>
+		             <f:facet name="header">
+		                <h:outputText value="" 
+		                              styleClass="bold"/>
+		             </f:facet>
+		              		          
+			      </h:column>			
+		     </h:dataTable>
+		     <br/> 
+		     <h:commandButton class="button" value="Update" action="#{shoppingCartManager.updateQuantity()}"/>
+			 <h:commandButton class="button" value="Remove" action="#{shoppingCartManager.removeItems}"/>
+		     </h:form>
+			<br/>
+		    <h:link value="Continue Shopping " outcome="userGetBook?includeViewParams=true">
+		    	<f:param name="bookId" value="#{param.bookId}"/>
+			</h:link> 
+			 | 
+			<h:link value="Proceed to Checkout" outcome="userReviewShoppingCart">
+			</h:link>
+		</ui:define>
+	</ui:composition>
+</html>

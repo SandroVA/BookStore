@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova
+	 Date: 01.03.2014
+	 Version: 1.0 -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+	<!-- need validation on the fields -->
+	<ui:define name="content">
+		<div id="bookinsert">
+			<div id="tittle">
+
+				<h1>INSERT BOOKS</h1>
+
+			</div>
+			<div id="adManInvFrm">
+				<h:graphicImage library="images" name="question.jpg"
+			alt="questionMark" title=" #{lbls.helpAdminInsertBook}" />
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:outputText value="#{lbls.isbn} :" />
+
+						<h:inputText id="isbn" value="#{bookBean.isbn}" required="true"
+							validatorMessage="#{validation.badISBN}" requiredMessage="ISBN is required">
+							<f:validateRegex pattern="^(?:ISBN(?:-1[03])?:??)?(?=[-0-9?]{17}$|[-0-9X?]{13}$|[0-9X]{10}$)?(?:97[89][-?]?)?[0-9]{1,5}[-?]?(?:[0-9]+[-?]?){2}[0-9X]$"/>
+							<f:ajax event="blur" render="isbnError" />
+						</h:inputText>
+						<h:message id="isbnError" for="isbn" styleClass="error"/>
+						<br />
+
+						<h:outputText value="#{lbls.title} :"  />
+
+						<h:inputText id="title" value="#{bookBean.title}" required="true" 
+						requiredMessage="#{validation.titleRequired}" validatorMessage="#{validation.badTitle}">
+							<f:validateLength minimum="2" maximum="200"/>
+							<f:ajax event="change" render="titleError" />
+							<f:ajax event="blur" listener="#{bookManager.isExists()}"/>
+						</h:inputText>
+						<h:message id="titleError" for="title" styleClass="error"/>
+						<br />
+
+						<h:outputText value="#{lbls.format} :" />
+						<h:selectOneMenu id="formatBook" value="#{formatBean.formatName}" size="80">
+							<f:selectItems value="#{formatManager.formatNames}" />
+							<f:ajax event="change" execute="@this"
+								listener="#{formatManager.setFormatId()}" />
+						</h:selectOneMenu>
+
+
+
+						<h:outputText value="#{lbls.numberCopies} :" />
+
+						<h:inputText id="numberCopies" value="#{bookBean.numberCopies}" 
+							validatorMessage="#{validation.badNumberCopies}" converterMessage="Number of copies is an integer number">
+							<f:convertNumber minIntegerDigits="1"/>
+							<f:validateLongRange minimum="0" maximum="9999"/>
+							<f:ajax event="change" render="copiesError" />
+						</h:inputText>
+						<h:message id="copiesError" for="numberCopies" styleClass="error"/>
+						<br />
+						
+						
+						<h:outputText value="#{lbls.wholesalePrice} :" />
+
+						<h:inputText id="wholesale" value="#{bookBean.wholesalePrice}" 
+						 validatorMessage="#{validation.badWholesale}" converterMessage="#{validation.badFormatWholesale}">
+						<f:convertNumber maxFractionDigits="2" />
+							<f:validateDoubleRange minimum="0.01" maximum="9999.00"/>
+							
+							<f:ajax event="change" render="wholesaleError" />
+						</h:inputText>
+						<h:message id="wholesaleError" for="wholesale" styleClass="error"/>
+						<br />
+						
+						
+						<h:outputText value="#{lbls.listPrice} :" />
+
+						<h:inputText id="listPrice" value="#{bookBean.listPrice}" required ="true" 
+							requiredMessage="#{validation.listPriceRequired}" converterMessage="#{validation.badFormatListPrice}"
+							validatorMessage="#{validation.badListPrice}">
+							<f:validateDoubleRange minimum="0.01" maximum="9999.00"/>
+							<f:convertNumber maxFractionDigits="2" />
+							<f:ajax event="change" render="listPriceError" />
+						</h:inputText>
+						<h:message id="listPriceError" for="listPrice" styleClass="error"/>
+						<br />
+
+
+						<h:outputText value="#{lbls.salePrice} :" />
+
+						<h:inputText id="salePrice" value="#{bookBean.salePrice}"
+						converterMessage="#{validation.badFormatSalePrice}"
+							validatorMessage="#{validation.badSalePrice}" >
+								<f:validateDoubleRange minimum="0.00" maximum="1000.00"/>
+								<f:convertNumber maxFractionDigits="2" />
+								<f:ajax event="change" render="salePriceError" styleClass="error" />
+						</h:inputText>
+						<h:message id="salePriceError" for="salePrice"/>
+						<br />
+						
+						<h:outputText value="#{lbls.weight} :" />
+
+						<h:inputText id="weight" value="#{bookBean.weight}"
+						 converterMessage="#{validation.badFormatWeight}" 
+						 validatorMessage="#{validation.badWeight}">
+						 	<f:convertNumber minIntegerDigits="0"/>
+							<f:validateLongRange minimum="0" maximum="9999"/>
+							<f:ajax event="change" render="weightError" />
+						 </h:inputText>
+						 <h:message id="weightError" for="weight" styleClass="error"/>
+						<br />
+
+						<h:outputText value="#{lbls.dimensions} :" />
+
+						<h:inputText id="dimensions" value="#{bookBean.dimensions}">
+						 
+						 <f:ajax event="change" render="dimensionsError" />
+						 </h:inputText>
+						 <h:message id="dimensionsError" for="dimensions" styleClass="errors"/>
+						<br />
+
+						<h:outputText value="#{lbls.removalStatus} :" />
+
+
+						<h:selectBooleanCheckbox id="removalStatus" 
+							value="#{bookBean.removalStatus}" />
+
+						<h:outputText value="#{lbls.numberPages} :" />
+
+						<h:inputText id="numberPages" value="#{bookBean.numberPages}" required="true"
+						requiredMessage="#{validation.numberPagesRequired}"
+							validatorMessage="#{validation.badNumberPages}" 
+							converterMessage="#{validation.badFormatNumberOfPages}">
+							<f:convertNumber minIntegerDigits="1"/>
+							<f:validateLongRange minimum="1" maximum="9999"/>
+							<f:ajax event="change" render="pagesError" />
+						</h:inputText>
+						<h:message id="pagesError" for="numberPages" style="color:red;"/>
+						<br />
+						
+
+					</h:panelGrid>
+					
+					<!-- connect the buttons with book action bean -->
+					<h:commandButton styleClass="button" value="#{lbls.next}"
+						action="adminUploadImage" />
+					<h:commandButton styleClass="button" value="#{lbls.reset}"
+						action="adminInsertBooks" immediate="true" />
+				</h:form>
+
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/g7w14">
+	<Resource name="jdbc/g7w14" auth="Container" type="javax.sql.DataSource"
+		maxActive="20" maxIdle="30" maxWait="10000" username="g7w14" password="rhino3piano"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://waldo2.dawsoncollege.qc.ca:3306/g7w14?autoReconnect=true" />
+</Context>
+             

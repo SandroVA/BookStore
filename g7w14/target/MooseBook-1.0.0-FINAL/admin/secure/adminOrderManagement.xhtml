@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova 
+	 Date: 03.03.2014
+	 Version: 1.0 -->
+	 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+	
+	
+	<ui:define name="content">
+		<h1>#{lbls.orderHead}</h1>
+		<h:outputText  value="#{lbls.lblSearchByOrderId}"/><br/>
+		<h:form>
+			<h:outputText value="#{lbls.orderId}"></h:outputText>
+			<h:selectOneMenu  value="#{orderBean.orderId}">
+				<f:selectItems value="#{orderManager.getAllOrderId()}"/>
+			</h:selectOneMenu>
+			<h:commandButton value="#{lbls.createReport}" action="adminEditOrderItem"/><br/><br/>
+		</h:form>
+		<h:form>	
+			<h:outputText  value="#{lbls.lblSearchByCustomer}"/><br/>
+			<h:selectOneMenu value="#{customerManager.fullName}">
+				<f:selectItems value="#{customerManager.allCustomerNames}" />
+				<f:ajax event="change" 
+                        execute="@this" 
+                        render="orders"
+                        listener="#{customerManager.setNamesFromFullName()}" />
+				
+			</h:selectOneMenu>
+			
+			
+			<h:selectOneMenu id="orders" value="#{orderBean.orderId}" >
+				<f:selectItems value="#{orderManager.getAllIdForCustomer()}" />				
+			</h:selectOneMenu>
+			
+			<h:commandButton value="#{lbls.createReport}" action="adminEditOrderItem"/><br/><br/>
+			<h:message for="orders" style="color:red" showDetail="true"></h:message>
+		</h:form>
+		<h:messages/>
+	</ui:define>	
+	
+</ui:composition>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Created by: Svetlana Shopova 
+	 Date: 24.03.2014
+	 Version: 1.0 
+	 Updated by Joseph He-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+
+	<ui:define name="content">
+
+		<div id="adminInsertAuthor">
+		<h1>
+			<h:graphicImage library="images" name="question.jpg"
+				alt="questionMark" title=" #{lbls.helpAdminInsertAuthor}" />
+			#{lbls.adminInsertAuthorHeader}
+		</h1><br/>
+
+
+		<h:form id="searchByLastName">
+			<fieldset>
+				<legend>#{lbls.searchByAuthorLastName}</legend>
+				<h:panelGrid columns="4">
+					<h:graphicImage library="images" name="question.jpg"
+						alt="questionMark" title=" #{lbls.helpSearchinByLastAuthorName}" />
+					<h:selectOneMenu value="#{authorBean.authorLastName}" styleClass="insertAuthorSelectOne">
+						<f:selectItems value="#{authorManager.allLastNames}" styleClass="insertAuthorSelectItems"/>
+						<f:ajax event="change" execute="@this" render="firstNames"
+							listener="#{authorManager.getFirstNamesByLast()}" />
+					</h:selectOneMenu>
+
+					<h:selectOneMenu id="firstNames"
+						value="#{authorBean.authorFirstName}" styleClass="insertAuthorSelectOne">
+						<f:selectItems value="#{authorManager.allFirstNames}" styleClass="insertAuthorSelectItems" />
+					</h:selectOneMenu>
+					<h:commandButton styleClass="button" id="saveChoiceLast"
+						value="#{lbls.save}"
+						action="#{authorManager.createBookAuthorKey()}" />
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+		<br />
+
+
+		<h:form id="searchByFirstName">
+			<fieldset>
+				<legend>#{lbls.searchByAuthorFirstName}</legend>
+				<h:panelGrid columns="4">
+					<h:graphicImage library="images" name="question.jpg"
+						alt="questionMark" title=" #{lbls.helpSearchinByFirstAuthorName}" />
+					<h:selectOneMenu value="#{authorBean.authorFirstName}" styleClass="insertAuthorSelectOne">
+						<f:selectItems value="#{authorManager.allFirstNames}" styleClass="insertAuthorSelectItems"/>
+						<f:ajax event="change" execute="@this" render="lNames"
+							listener="#{authorManager.getLastNamesByFirst()}" />
+					</h:selectOneMenu>
+
+					<h:selectOneMenu id="lNames" value="#{authorBean.authorLastName}" styleClass="insertAuthorSelectOne">
+						<f:selectItems value="#{authorManager.allLastNames}" styleClass="insertAuthorSelectItems"/>
+					</h:selectOneMenu>
+
+
+					<h:commandButton styleClass="button" id="saveChoiceFirst"
+						value="#{lbls.save}"
+						action="#{authorManager.createBookAuthorKey()}" />
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+		<br />
+		<h:form id="endForm">
+			<h:commandButton styleClass="button" id="end" value="#{lbls.end}"
+				action="adminInsertBooks" />
+		</h:form>
+
+		<h:form id="createAuthor">
+			<fieldset>
+				<legend>#{lbls.createAuthor}</legend>
+				<h:panelGrid columns="6">
+					<h:graphicImage library="images" name="question.jpg"
+						alt="questionMark" title=" #{lbls.helpCreateAuthor}" />
+					<h:outputText value="#{lbls.authorFirst} :" />
+
+					<h:inputText value="#{authorBean.authorFirstName}" styleClass="insertAuthorInputText"/>
+
+					<h:outputText value="#{lbls.authorLast} :" styleClass="insertAuthorOutputTxt"/>
+
+					<h:inputText value="#{authorBean.authorLastName}" required="true"
+						requiredMessage="#{validtion.requiredAuthorLastName}"
+						validatorMessage="#{validation.badAuthorLastName}" styleClass="insertAuthorInputText">
+						<f:validateLength minimum="1" maximum="50" />
+						<f:validateRegex pattern="^[A-Za-z0-9 . ']*$" />
+					</h:inputText>
+				
+				<h:commandButton id="saveChoiseNew" styleClass="button"
+					value="#{lbls.save}" action="#{authorManager.saveAuthor()}" />
+				</h:panelGrid>
+				
+			</fieldset>
+		</h:form><br/>
+		<h:form >
+			<h:commandButton styleClass="button" id="end" value="#{lbls.end}"
+				action="#{authorManager.refreshBeans()}" />
+		</h:form>
+		<h:messages globalOnly="true" />
+	</div>
+	</ui:define>
+
+</ui:composition>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core">
+	
+<h:head> 
+	<h:outputStylesheet library="css" name="userSiteStyle.css"  />
+</h:head>
+<!-- Created by: Sandro -->
+<h:body>
+	<!-- Header of User Page -->
+	<ui:insert name="header" >
+    	<ui:include src="/templates/userHeader.xhtml" />
+    </ui:insert> 
+    <div id="content">
+	    <h:panelGroup layout="block" id="mainContent">
+	    	<!-- Left Side of User Page -->
+	        <ui:insert name="userLeftBody" >
+	    		<ui:include src="/templates/userLeftBody.xhtml" />
+	    	</ui:insert> 
+	    	
+	    	<!-- This is what will change from page to page -->
+		    <h:panelGroup layout="block" id="userContent">
+			    <ui:insert name="content">
+		 		</ui:insert>
+			</h:panelGroup>
+			
+			<!-- Right side of User Page -->
+			<ui:insert name="userRightBody" >
+		    	<ui:include src="/templates/userRightBody.xhtml" />
+		    </ui:insert> 
+	    </h:panelGroup>
+    </div>
+    <!-- Footer of User Page -->
+    <ui:insert name="footer" >
+    	<ui:include src="/templates/userFooter.xhtml" />
+    </ui:insert> 
+</h:body>
+</html>

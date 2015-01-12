@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions" >
+<!-- Created by: Sandro 
+	 Updated by Joseph He-->	
+<h:head> 
+	<h:outputStylesheet library="css" name="userSiteStyle.css"  />
+</h:head>
+
+	<ui:composition template="/templates/userTemplate.xhtml">
+		<ui:define name="content">
+				<div id="title"><h5>Welcome to Moose Books</h5></div>
+				<h:outputText value="&lt;br/&gt;" escape="false" />
+				<h:panelGroup layout="block" styleClass="subtitle">Books Recently added:</h:panelGroup>
+				<h:outputText value="&lt;br/&gt;" escape="false" />
+				
+				<h:panelGroup layout="block" styleClass="smallBooks">
+					<ui:repeat value="#{bookManager.retrieveLatestBooks()}" var="item">
+						<h:panelGroup layout="block" id="smallBook1">
+							<h:graphicImage library="images" name="#{item.image}" alt="" id="image2"/><br/><br/>
+					    	<h:link value="#{fn:substring(item.title,0,28)}..." outcome="userGetBook?includeViewParams=true">
+		    					<f:param name="bookId" value="#{item.bookId}"/>
+							</h:link><br/>
+				    		by <ui:repeat value="#{authorManager.getBookAuthors(item.bookId)}" var="item">
+				    		#{item.authorFirstName} #{item.authorLastName} <br/>
+				    		</ui:repeat>
+				    		List Price: $#{item.listPrice}<br/>
+				    	</h:panelGroup>
+					</ui:repeat> 
+				</h:panelGroup>
+				<h:outputText value="&lt;br/&gt;" escape="false" />
+				<h:outputText value="&lt;br/&gt;" escape="false" />
+				<br/><br/><br/><br/> <br/>
+				<h:panelGroup layout="block" styleClass="subtitle">Books on Sale:</h:panelGroup>
+				<h:outputText value="&lt;br/&gt;" escape="false" />
+				
+				<h:panelGroup layout="block" styleClass="smallBooks">
+					<ui:repeat value="#{bookManager.retrieveLatestBooksOnSale()}" var="item">
+						<h:panelGroup layout="block" id="smallBook2" >
+							<h:graphicImage library="images" name="#{item.image}" alt="" id="image2"/><br/><br/>
+				    		<h:link value="#{fn:substring(item.title,0,28)}..." outcome="userGetBook?bookId=#{item.bookId}"></h:link><br/>
+				    		by <ui:repeat value="#{authorManager.getBookAuthors(item.bookId)}" var="item">
+				    		#{item.authorFirstName} #{item.authorLastName} <br/>
+				    		</ui:repeat>
+				    		<h:panelGroup layout="line" id="listPrice" >List Price: $#{item.listPrice}</h:panelGroup><br/>
+				    		<h:panelGroup layout="line" id="salePrice" >Sales Price: $#{item.salePrice}</h:panelGroup><br/>
+				    	</h:panelGroup>
+					</ui:repeat> 
+				</h:panelGroup>
+				
+				<h:outputText value="&lt;br/&gt;" escape="false" />
+				<h:outputText value="&lt;br/&gt;" escape="false" />
+				<h:outputText value="&lt;br/&gt;" escape="false" />
+				<h:outputText value="&lt;br/&gt;" escape="false" />
+				<h:outputText value="&lt;br/&gt;" escape="false" />
+				<h:outputText value="&lt;br/&gt;" escape="false" />
+				<h:outputText value="&lt;br/&gt;" escape="false" />
+				<br/>
+				<h:outputText rendered="#{not userPreferencesManager.firstTimeCalled}">
+					<h:panelGroup layout="block" id="subtitle">Books you might like:</h:panelGroup>
+					
+					<h:outputText value="&lt;br/&gt;" escape="false" />
+					<h:outputText value="&lt;br/&gt;" escape="false" />
+					<h:panelGroup layout="block" styleClass="booksYouMightLike">
+						<ui:repeat value="#{userPreferencesManager.retrieveLatestBooksByCategory()}" var="item">
+							<h:panelGroup layout="block" id="smallBook" >
+								<h:graphicImage library="images" name="#{item.image}" alt="" id="image2"/><br/><br/>
+						    	<h:link value="#{fn:substring(item.title,0,28)}..." outcome="userGetBook?includeViewParams=true">
+			    					<f:param name="bookId" value="#{item.bookId}"/>
+								</h:link><br/>
+					    		by <ui:repeat value="#{authorManager.getBookAuthors(item.bookId)}" var="item">
+					    		#{item.authorFirstName} #{item.authorLastName}
+					    		</ui:repeat><br/>
+					    		List Price: $#{item.listPrice}<br/>
+					    	</h:panelGroup>
+						</ui:repeat> 
+					</h:panelGroup>
+				</h:outputText>
+		</ui:define>
+	</ui:composition>
+</html>

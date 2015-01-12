@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13926882037000" configfile="/g7w14/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="adminHome.xhtml" x="24" y="324" id="pf13926886602701" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" outlinks="pf13926886602702 pf13926886602703 pf13926886602704 pf13926886602705 pf13926886602706 pf13926886602707 pf13926886602708 pf13926886602709 pf139268866027010" inlinks="pf13927438791680" path="/adminHome.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="adminManageInventory.xhtml" x="264" y="12" id="pf139268866027011" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13926886602702" path="/adminManageInventory.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="adminSetSales.xhtml" x="439" y="77" id="pf139268866027012" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13926886602703" path="/adminSetSales.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="adminClientManagement.xhtml" x="528" y="156" id="pf139268866027013" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf13926886602704" path="/adminClientManagement.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="adminReviewManagement.xhtml" x="713" y="336" id="pf139268866027014" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf13926886602706" path="/adminReviewManagement.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="adminReporting.xhtml" x="624" y="432" id="pf139268866027015" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf13926886602707" path="/adminReporting.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="adminOrderManagement.xhtml" x="600" y="252" id="pf139268866027016" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf13926886602705" path="/adminOrderManagement.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="adminNewsManagement.xhtml" x="529" y="528" id="pf139268866027017" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" inlinks="pf13926886602708" path="/adminNewsManagement.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="adminSurveyManagement.xhtml" x="396" y="588" id="pf139268866027018" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" inlinks="pf13926886602709" path="/adminSurveyManagement.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="adminBannerManagement.xhtml" x="216" y="617" id="pf139268866027019" referenceLink="//@navigationRule.8/@navigationCase.0/@toViewId|" inlinks="pf139268866027010" path="/adminBannerManagement.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="adminLogin.xhtml" x="27" y="180" id="pf13927438791681" referenceLink="//@navigationRule.9/@fromViewId|" outlinks="pf13927438791680" path="/adminLogin.xhtml"/>
+  <links id="pf13926886602702" target="pf139268866027011" source="pf13926886602701"/>
+  <links id="pf13926886602703" target="pf139268866027012" source="pf13926886602701"/>
+  <links id="pf13926886602704" target="pf139268866027013" source="pf13926886602701"/>
+  <links id="pf13926886602705" target="pf139268866027016" source="pf13926886602701"/>
+  <links id="pf13926886602706" target="pf139268866027014" source="pf13926886602701"/>
+  <links id="pf13926886602707" target="pf139268866027015" source="pf13926886602701"/>
+  <links id="pf13926886602708" target="pf139268866027017" source="pf13926886602701"/>
+  <links id="pf13926886602709" target="pf139268866027018" source="pf13926886602701"/>
+  <links id="pf139268866027010" target="pf139268866027019" source="pf13926886602701"/>
+  <links id="pf13927438791680" target="pf13926886602701" source="pf13927438791681"/>
+</pageflow:Pageflow>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<!-- Created by: Sandro and Ian Ozturk -->	
+<h:head> 
+	<h:outputStylesheet library="css" name="userSiteStyle.css"  />
+</h:head>
+	<ui:composition template="/templates/userTemplate.xhtml">
+		<ui:define name="content">
+		<h:panelGroup layout="block" id="title">#{bookManager.searchBookById(param.bookId)[0].title}</h:panelGroup> <br/>
+			#{userPreferencesManager.setFirstTimeCalled()}
+			#{userPreferencesManager.setBookId(param.bookId)}
+			#{userPreferencesManager.setCategoryId(bookManager.searchBookById(param.bookId)[0].categoryId)}
+				
+			<ui:repeat value="#{bookManager.searchBookById(param.bookId)}" var="item">
+				<h:graphicImage library="images" name="#{item.image}" alt="" style="float:left; padding-left: 80px; width:160px; height:200px;"/>
+				<ui:repeat value="#{authorManager.getBookAuthors(item.bookId)}" var="item" >
+			     <h:panelGroup layout="line" id="authorName" style="padding-left: 50px;"> by #{item.authorFirstName} #{item.authorLastName}   <br/></h:panelGroup> 
+			  	</ui:repeat><br/>
+			  	<h:panelGroup layout="line" id="listPrice" style="padding-left: 50px;"> List Price: $#{item.listPrice} </h:panelGroup>
+			  	<br/><br/><br/><br/><br/><br/><br/><br/><br/> <br/>
+			  	<h:link value="Add to Shopping Cart" outcome="userShoppingCart?includeViewParams=true" style="float:left; padding-left: 100px;">
+	    			<f:param name="bookId" value="#{item.bookId}"/> 
+				</h:link><br/>	
+			</ui:repeat>
+			
+			<br/>
+			<h:panelGroup layout="block" styleClass="subtitle"> Book Information </h:panelGroup> <br/>
+			<h:panelGroup layout="block" id="bookInfo">
+				Publisher: 
+				<ui:repeat value="#{publisherManager.getPublisher(bookManager.searchBookById(param.bookId)[0].publisherId)}" var="item" >
+					<h:panelGroup layout="line" id="authorName" > #{item.publisherName} </h:panelGroup> 
+				</ui:repeat><br/>
+				ISBN: #{bookManager.searchBookById(param.bookId)[0].isbn}<br/>
+				Category: 
+				<ui:repeat value="#{categoryManager.getCategoryNameById(bookManager.searchBookById(param.bookId)[0].categoryId)}" var="item" >
+					#{item.name}
+				</ui:repeat><br/>
+				Copies On Hand: #{bookManager.searchBookById(param.bookId)[0].numberCopies}<br/>
+				Weight: #{bookManager.searchBookById(param.bookId)[0].weight}<br/>
+				Dimensions: #{bookManager.searchBookById(param.bookId)[0].dimensions}<br/>
+			</h:panelGroup>
+			
+			<br/>
+			<h:panelGroup layout="block" styleClass="subtitle"> Book From The Same Category </h:panelGroup> <br/>
+			<h:panelGroup layout="block" id="smallBooksByCategory">
+					<ui:repeat value="#{bookManager.retrieveLatestBooksByCategory(bookManager.searchBookById(param.bookId)[0].categoryId,bookManager.searchBookById(param.bookId)[0].bookId)}" var="item">
+						<h:panelGroup layout="block" id="smallBook" style="width: 185px; text-align: center; float: left;">
+							<h:graphicImage library="images" name="#{item.image}" alt="" style="width:70px; height:95px;"/><br/><br/>
+					    	<h:link value="#{fn:substring(item.title,0,28)}..." outcome="userGetBook?includeViewParams=true">
+		    					<f:param name="bookId" value="#{item.bookId}"/>
+							</h:link><br/>
+				    		by <ui:repeat value="#{authorManager.getBookAuthors(item.bookId)}" var="item">
+				    		#{item.authorFirstName} #{item.authorLastName}
+				    		</ui:repeat><br/>
+				    		List Price: $#{item.listPrice}
+				    	</h:panelGroup>
+					</ui:repeat> 
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="subtitle"> Reviews </h:panelGroup> <br/>
+
+			<h:form rendered="#{userBean.editable}">
+				<h:panelGrid columns="1">
+	   				<h:inputTextarea value="#{reviewBean.reviewText}" cols="100" rows="5" />
+			   		<h:commandButton styleClass="button" value="Submit" action="#{reviewManager.insertReview}"/>
+		   		</h:panelGrid> <br/>
+	  		</h:form>
+
+	  		<ui:repeat value="#{reviewManager.retrieveLatestReviews()}" var="item">
+	  			<h:outputText value="#{customerManager.getName(item.customerId)}:" style="font-weight:bold" /> <br/>
+	  			<h:outputText value="#{item.reviewText}" style="padding-left: 20px" /> <br/> <br/>
+			</ui:repeat>
+		</ui:define>
+	</ui:composition>
+</html>

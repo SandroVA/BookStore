@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova
+	 Date: 29.03.2014
+	 Version: 1.0 
+	 Updated by Joseph He-->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition  template="/templates/adminTemplate.xhtml">
+
+	<ui:define name="content">
+		<div id="adminEditBooks">
+		<h1>
+		<h:graphicImage id="quest" library="images" name="question.jpg" alt="questionMark" title=" #{lbls.helpAdminEditBook}"/>
+		#{lbls.adminEditBooksHeader}</h1>
+		<h:form id="searchByLastName">
+			<h:panelGrid columns="4">
+				
+				<h:graphicImage  library="images" name="question.jpg" alt="questionMark" title=" #{lbls.helpSearchByLastName}"/>
+				
+				
+				<h:outputText 
+					value="#{lbls.searchByAuthorLastName}:"  styleClass="editBookOutputTxt"  />
+					
+				
+				<h:selectOneMenu value="#{authorBean.authorLastName}" styleClass="editBooksSelectOneMenu" >
+					<f:selectItems value="#{authorManager.allLastNames}"  />
+				</h:selectOneMenu>
+				
+				
+				<h:commandButton  id="searchByLast" value="#{lbls.search}" action="#{bookManager.getAllByAuthorLastName()}" styleClass="button" />
+					
+			</h:panelGrid>
+		</h:form>
+		
+
+
+		<h:form id="searchByFirstName">
+			<h:panelGrid columns="4">
+					<h:graphicImage  library="images" name="question.jpg" alt="questionMark" title=" #{lbls.helpSearchByFirstName}"/>
+					<h:outputText value="#{lbls.searchByAuthorFirstName}:"  styleClass="editBookOutputTxt" />
+					<h:selectOneMenu value="#{authorBean.authorFirstName}" styleClass="editBooksSelectOneMenu">
+						<f:selectItems value="#{authorManager.allFirstNames}" />
+					</h:selectOneMenu>				
+				<h:commandButton id="searchByFirst" value="#{lbls.search}"
+					action="#{bookManager.getAllByAuthorFirstName()}"  styleClass="button"/>
+				
+			</h:panelGrid>
+		</h:form>
+		
+
+
+		<h:form id="searchByIsbn">
+			<h:panelGrid columns="4">
+				<h:graphicImage  library="images" name="question.jpg" alt="questionMark" title=" #{lbls.helpSearchByISBN}"/>
+				<h:outputText value="#{lbls.searchByISBN}: "  styleClass="editBookOutputTxt" />
+				<h:selectOneMenu  value="#{bookBean.isbn}" styleClass="editBooksSelectOneMenu">
+					<f:selectItems value="#{bookManager.allISBN}"  />
+				</h:selectOneMenu>
+				<h:commandButton id="searchISBN" value="#{lbls.search}" action="#{bookManager.getAllByISBN()}"  styleClass="button"/>
+			</h:panelGrid>
+		</h:form>
+	
+
+
+		<h:form id="searchById">
+			<h:panelGrid columns="4">
+				<h:graphicImage  library="images" name="question.jpg" alt="questionMark" title=" #{lbls.helpSearchByID}"/>
+				<h:outputText value="#{lbls.searchByBookId}:"  styleClass="editBookOutputTxt" />
+				<h:selectOneMenu  value="#{bookBean.bookId}" styleClass="editBooksSelectOneMenu">
+					<f:selectItems value="#{bookManager.allID}"  />
+				</h:selectOneMenu>
+				<h:commandButton id="searchISBN" value="#{lbls.search}"
+					action="#{bookManager.searchBooksById(bookBean.bookId)}" styleClass="button"/>
+			</h:panelGrid>
+		</h:form>
+		
+
+		<h:form id="searchByCategory">
+			
+			<h:panelGrid columns="4">
+				<h:graphicImage  library="images" name="question.jpg" alt="questionMark" title=" #{lbls.helpSearchByCategory}"/>
+				<h:outputText value="#{lbls.searchByCategory}:" styleClass="editBookOutputTxt" />
+				<h:selectOneMenu value="#{categoryBean.name}" styleClass="editBooksSelectOneMenu">
+					<f:selectItems value="#{categoryManager.names}"  styleClass="editBoosSelectItems"/>
+				</h:selectOneMenu>
+				<h:commandButton styleClass="button" id="searchCategory" value="#{lbls.search}" action="#{bookManager.getAllByCategory(categoryBean.name)}" />
+			</h:panelGrid>
+		</h:form>
+		<h:messages/>
+</div>
+	</ui:define>
+
+</ui:composition>
+</html>

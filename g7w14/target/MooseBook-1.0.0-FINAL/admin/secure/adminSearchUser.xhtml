@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova
+	 Date: 31.03.2014
+	 Version: 1.0 -->
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<!-- This page allows to admin to search for the user that he wants to edit -->
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+
+	<ui:define name="content">
+		<h1>
+			<h:graphicImage library="images" name="question.jpg"
+				alt="questionMark" title=" #{lbls.helpadminSearchUser }" />
+			#{lbls.adminSearchUserHeader}
+		</h1>
+		<h:form>
+			<h:outputText value="#{lbls.username}:" />
+			<h:inputText value="#{userBean.username}" />
+
+			<h:commandButton value="#{lbls.search}"
+				action="#{userManager.editUser()}" />
+			<h:messages style="color:red;" />
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

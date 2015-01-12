@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+	
+<h:head> 
+<h:outputStylesheet library="css" name="userSiteStyle.css"  />
+</h:head>
+<!-- Created by: Sandro -->
+<h:body>
+<!-- All the footer URLS -->
+<h:panelGroup layout="block" id="footer">
+	<div id="foot1">
+		<h:panelGroup layout="block" id="footerURLs">
+				<h:link value="Home" outcome="userHome" styleClass="footerURL">
+				</h:link> | 
+				<h:link value="Categories" outcome="userCategories" styleClass="footerURL">
+				</h:link> | 
+				<h:link value="Shopping Cart" outcome="userShoppingCart" styleClass="footerURL">
+				</h:link> | 
+				<h:link value="Contact Us" outcome="userContactUs" styleClass="footerURL">
+				</h:link> | 
+				<h:link value="Site Map" outcome="userSiteMap" styleClass="footerURL">
+				</h:link>
+		</h:panelGroup>
+	</div>
+	<!-- Copyright Text -->
+	<div id="foot2">
+		<h:panelGroup layout="block" id="copyrightText">
+			Copyright © 2014-2015 MooseBooks.com Inc. All Rights Reserved. <h:outputText value="&lt;br/&gt;" escape="false" />
+			Designated trademarks and brands are the property of their respective owners.
+		</h:panelGroup>
+	</div>
+</h:panelGroup>
+</h:body>
+</html>

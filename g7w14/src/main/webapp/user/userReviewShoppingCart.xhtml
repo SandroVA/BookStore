@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<!-- Created by: Sandro and Ian Ozturk
+	 Updated by Joseph He-->	
+<h:head> 
+	<h:outputStylesheet library="css" name="userSiteStyle.css"  />
+</h:head>
+
+	<ui:composition template="/templates/userTemplate.xhtml">
+		<ui:define name="content">
+		
+				
+			<h:panelGroup layout="block" id="title">Your Shopping Cart</h:panelGroup>
+		    
+		     <h:dataTable value="#{shoppingCartManager.cart}" var="item" id="table" >
+			     <h:column>
+		             <f:facet name="header">
+		                <h:outputText value="Item Description:" 
+		                              styleClass="bold"/>
+		             </f:facet>
+		            
+		             <h:outputText value="#{fn:substring(bookManager.searchBookById(item.bookId)[0].title,0,40)}..." /> <br/>
+		             <ui:repeat value="#{authorManager.getBookAuthors(item.bookId)}" var="item" >
+				     	<h:panelGroup layout="line" id="authorName" styleClass="padding" > by #{item.authorFirstName} #{item.authorLastName} </h:panelGroup> 
+				  	 </ui:repeat><br/> <br/>
+			      </h:column>
+			      
+			      <h:column>
+		             <f:facet name="header">
+		                <h:outputText value="Unit Price:" 
+		                              styleClass="bold"/>
+		             </f:facet>
+		              
+		             $<h:outputText value="#{item.price}" />
+			      </h:column>
+			      
+			      <h:column>
+		             <f:facet name="header">
+		                <h:outputText value="Quantity:" 
+		                              styleClass="bold"/>
+		             </f:facet>
+		              
+		             	<h:outputText value="#{item.quantity}" /> 
+			      </h:column>
+		     </h:dataTable>
+		    <br/> <br/>
+		    <h:outputText value="Shipping and Handling: " styleClass="bold"/> <h:outputText value="FREE!" id="txtfree" />
+		    <br/> <br/>
+		    <h:outputText value="Grand Total: " styleClass="bold" /> 
+		    <h:outputText value="Please Log in to see your Grand Total " rendered="#{not userBean.editable}" id="txtgrand"  />
+		    <h:outputText value="$#{shoppingCartManager.getTotalCost()} " rendered="#{userBean.editable}"/>        
+		    <br/> <br/>                   
+		    <h:link value="Return to Shopping Cart " outcome="userShoppingCart.xhtml?bookId=-1">
+			</h:link> 
+			 | 
+			 <h:outputText value="Continue to Checkout" rendered="#{not userBean.editable}" id="txtcheckout" />
+			<h:link value="Continue to Checkout" outcome="userCheckout" rendered="#{userBean.editable}">
+			</h:link>
+		   
+		</ui:define>
+	</ui:composition>
+</html>

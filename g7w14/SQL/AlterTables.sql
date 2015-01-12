@@ -1,0 +1,1 @@
+alter table customer_review add column Approved BOOLEAN;

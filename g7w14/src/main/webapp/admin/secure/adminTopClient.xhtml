@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova 
+	 Date: 10.03.2014
+	 Version: 1.0 -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+
+	<ui:define name="content">
+		<div id="topclt">
+			<div id="tittle">
+				<h1>TOP CLIENT</h1>
+			</div>
+			<h:form>
+				<label for="CalendarStart">#{lbls.startDate}</label>
+				<rich:graphValidator value="#{calendarBean}">
+					<rich:calendar id="CalendarStart"
+						value="#{calendarBean.startSelectedDate}"
+						timeZone="#{calendarBean.timeZone}"
+						datePattern="#{lbls.datePattern}">
+					</rich:calendar>
+	
+					<label for="CalendarEnd">#{lbls.endDate}</label>
+					<rich:calendar id="CalendarEnd"
+						value="#{calendarBean.endSelectedDate}"
+						timeZone="#{calendarBean.timeZone}"
+						datePattern="#{lbls.datePattern}">
+					</rich:calendar>
+				</rich:graphValidator>
+				<br />
+	
+				
+		<h:commandButton styleClass="button" value="#{lbls.createReport}" action="#{customerManager.setRender(true)}"/>
+		<h:commandButton styleClass="button" value="#{lbls.reset}" action="#{customerManager.resetTopClient()}"
+			immediate="true" />
+			
+			<h:dataTable 
+					value="#{customerManager.topClients}" var="customer" rendered="#{customerManager.render}">
+					<h:column>
+						<f:facet name="header">#{lbls.customerId}</f:facet>
+						<h:outputText value="#{customer.customerId}"
+							style="font-weight: bold" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{lbls.f_Name}</f:facet>
+						<h:outputText value="#{customer.f_Name}" style="font-weight: bold" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{lbls.l_Name}</f:facet>
+						<h:outputText value="#{customer.l_Name}" style="font-weight: bold" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{lbls.city}</f:facet>
+						<h:outputText value="#{customer.city}" style="font-weight: bold" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{lbls.address1}</f:facet>
+						<h:outputText value="#{customer.address1}"
+							style="font-weight: bold" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{lbls.sales}</f:facet>
+						<h:outputText value="#{customer.sales}" style="font-weight: bold" />
+					</h:column>
+				</h:dataTable>
+				<h:messages/>
+			</h:form>
+		</div>
+	</ui:define>
+	
+</ui:composition>
+</html>

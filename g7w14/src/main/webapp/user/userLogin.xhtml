@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core">
+<!-- Created by: Sandro -->	
+<h:head> 
+	<h:outputStylesheet library="css" name="userSiteStyle.css"  />
+</h:head>
+
+	<ui:composition template="/templates/userTemplate.xhtml">
+		<ui:define name="content">
+			<h:outputText rendered="#{not userBean.editable}">
+				<h:panelGroup layout="block" styleClass="title">Login</h:panelGroup>
+			    <h:panelGroup layout="block" styleClass="subtitle">Sign into your account:</h:panelGroup>
+			  	<h:outputText value="&lt;br/&gt;" escape="false" />
+			    Already a member? Please enter in your information below:
+			    <h:outputText value="&lt;br/&gt;" escape="false" />
+			    <h:outputText value="&lt;br/&gt;" escape="false" />
+				
+				<h:form>
+			   		<h:panelGrid columns="1">
+			   			<h:outputText value="#{lbls.username}:"/>
+			   			<h:inputText styleClass="usernameLeftBody" value="#{userBean.username}" id="usernameLeftBody" />
+		
+						<h:outputText value="#{lbls.password}:"/>
+			   			<h:inputSecret styleClass="passwordLeftBody" value="#{userBean.password}" id="passwordLeftBody" />
+			   		</h:panelGrid>
+
+			   		<h:commandButton styleClass="button" value="Login" action="#{loginActionBean.login}"/>
+		  		</h:form>
+				<br/>
+				 <h:panelGroup layout="block" id="subtitle">Not a registered member?</h:panelGroup>
+				<h:outputText value="&lt;br/&gt;" escape="false" />
+				You can register an account by clicking
+				<h:link value="here" outcome="userRegister" id="registerLink"> </h:link>.
+				<h:outputText value="&lt;br/&gt;" escape="false" />
+			</h:outputText>
+			<h:outputText rendered="#{userBean.editable}">
+				<h:panelGroup layout="block" styleClass="title">Welcome</h:panelGroup>
+				It seems that you are already logged in!
+			</h:outputText>
+		</ui:define>
+	</ui:composition>
+</html>

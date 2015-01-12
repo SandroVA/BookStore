@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core">
+<!-- Created by: Sandro and Ian Ozturk
+	 Updated by Joseph He-->	
+<h:head> 
+	<h:outputStylesheet library="css" name="userSiteStyle.css"  />
+</h:head>
+
+	<ui:composition template="/templates/userTemplate.xhtml">
+		<ui:define name="content">
+		
+		<h:panelGroup layout="block" styleClass="title">Check Out</h:panelGroup>
+		
+		<h:outputText rendered="#{not userBean.editable}" >
+			#{userPreferencesManager.redirectHome()}
+		</h:outputText>
+		
+		<h:outputText rendered="#{userBean.editable}" >
+			<h:panelGroup layout="block" styleClass="subtitle">Shipping Information</h:panelGroup> <br/>
+			#{customerManager.getMyInfo()}
+		    <h:form>
+		   		<h:panelGrid columns="2">
+	   			
+		   			<h:outputText value="Title:"/>
+		   			<h:inputText value="#{customerBean.title}" styleClass="myAccountForm"/>
+	
+					<h:outputText value="First Name:"/>
+		   			<h:inputText value="#{customerBean.f_Name}" styleClass="myAccountForm"/>
+		   			
+		   			<h:outputText value="Last Name:"/>
+		   			<h:inputText value="#{customerBean.l_Name}" styleClass="myAccountForm"/>
+		   			
+		   			<h:outputText value="Email:"/>
+		   			<h:inputText value="#{customerBean.email}" styleClass="myAccountForm"/>
+		   			
+		   			<h:outputText value="Address 1:"/>
+		   			<h:inputText value="#{customerBean.address1}" styleClass="myAccountForm"/>
+		   			
+		   			<h:outputText value="Address 2:"/>
+		   			<h:inputText value="#{customerBean.address2}" styleClass="myAccountForm"/>
+		   			
+		   			<h:outputText value="Country:"/>
+		   			<h:selectOneMenu value="#{customerBean.country}" styleClass="myAccountForm">
+						<f:selectItem itemValue="Canada" itemLabel="Canada"/>
+					</h:selectOneMenu>
+					
+		   			<h:outputText value="Province:"/>
+		   			<h:selectOneMenu value="#{customerBean.province}" styleClass="myAccountForm">
+							<f:selectItem itemValue="British Columbia" itemLabel="British Columbia" />
+							<f:selectItem itemValue="Alberta" itemLabel="Alberta" />
+							<f:selectItem itemValue="Saskatchewan" itemLabel="Saskatchewan" />
+							<f:selectItem itemValue="Manitoba" itemLabel="Manitoba" />
+							<f:selectItem itemValue="Ontario" itemLabel="Ontario" />
+							<f:selectItem itemValue="Quebec" itemLabel="Quebec" />
+							<f:selectItem itemValue="New Brunswick" itemLabel="New Brunswick" />
+							<f:selectItem itemValue="Newfoundland and Labrador" itemLabel="Newfoundland and Labrador" />
+							<f:selectItem itemValue="Nova Scotia" itemLabel="Nova Scotia" />
+							<f:selectItem itemValue="Prince Edward Island" itemLabel="Prince Edward Island" />
+							<f:selectItem itemValue="Yukon" itemLabel="Yukon" />
+							<f:selectItem itemValue="Northwest Territories" itemLabel="Northwest Territories" />
+							<f:selectItem itemValue="Nunavut" itemLabel="Nunavut" />
+					</h:selectOneMenu>
+					
+					<h:outputText value="City:"/>
+		   			<h:inputText value="#{customerBean.city}" styleClass="myAccountForm"/>
+		   			
+		   			<h:outputText value="Postal Code:"/>
+		   			<h:inputText value="#{customerBean.postal_Code}" styleClass="myAccountForm"/>
+		   			
+		   			<h:outputText value="Home Phone:"/>
+		   			<h:inputText value="#{customerBean.home_Phone}" styleClass="myAccountForm"/>
+		   			
+		   			<h:outputText value="Cell Phone:"/>
+		   			<h:inputText value="#{customerBean.cell_Phone}" styleClass="myAccountForm"/>
+		   			
+		   			<h:outputText value="Company:"/>
+		   			<h:inputText value="#{customerBean.company}" styleClass="myAccountForm" /> 
+	   		
+		   		</h:panelGrid>
+	  		
+	  		<br/> <br/>
+	  		<h:panelGroup layout="block" styleClass="subtitle">Final Price</h:panelGroup> <br/>
+	  		<h:outputText value="Shipping and Handling: " styleClass="bold" /> <h:outputText value="FREE!" id="txtfree" /> <br/>
+	  		<h:outputText value="Grand Total: " styleClass="bold" /> 
+		    <h:outputText value="$#{shoppingCartManager.getTotalCost()} " />   
+		    <br/> <br/>
+		    <h:panelGroup layout="block" styleClass="subtitle">Payment Information</h:panelGroup> <br/>
+		    
+		    
+		   		<h:panelGrid columns="2">
+	   			
+		   			<h:outputText value="Credit Card Number:"/>
+		   			<h:inputText value=""/>
+		   		
+		   		</h:panelGrid>
+		   		
+	  		<br/> <br/>
+	  		<h:panelGroup layout="block" styleClass="subtitle">Finalize Purchase</h:panelGroup> <br/>
+	  		<h:commandButton styleClass="button" value="Submit" action="#{orderManager.insertCustomerOrder()}"/>
+	  		</h:form>
+		</h:outputText>   
+		</ui:define>
+	</ui:composition>
+</html>

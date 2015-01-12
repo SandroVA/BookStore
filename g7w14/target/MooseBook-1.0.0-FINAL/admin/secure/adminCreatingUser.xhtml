@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova 
+	 Date: 09.03.2014
+	 Version: 1.0 
+	 Updated by Joseph He-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+	
+	<ui:define name="content">
+	   <div id="usrcreate">
+	   		<div id="tittle">
+	   			<h1>USER CREATING</h1>
+	   		</div>
+	   		<h:form styleClass="coller">
+	   		<h:panelGrid columns="2">
+	   			<h:outputText value="#{lbls.userType} :" styleClass="text-output"/>
+	   			<h:selectOneMenu value="userBean.UserTypeId">
+	   				<f:selectItem itemValue="1" itemLabel="#{lbls.user}"/>
+	   				<f:selectItem itemValue="2" itemLabel="#{lbls.admin}"/>
+	   			</h:selectOneMenu>
+	   			
+	   			<h:outputText value="#{lbls.username} :" styleClass="text-output"/>
+	   			<h:inputText value="#{userBean.username}"  styleClass="text-output"/>
+
+				<h:outputText value="#{lbls.password} :"/>
+	   			<h:inputSecret value="#{userBean.password}"  styleClass="text-output"/>
+   		
+	   		</h:panelGrid>
+	   		<h:commandButton styleClass="button" value="#{lbls.save}" action="#{userManager.insertUser}" />
+	   		<h:commandButton styleClass="button" value="#{lbls.reset}" action="adminCreatingUser" immediate="true"/>
+	   
+	   </h:form>
+	   <h:messages/>
+	   </div>
+	</ui:define>
+
+</ui:composition>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova
+	 Date: 25.03.2014
+	 Version: 1.0 
+	 Updated by Joseph He-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+	
+	<ui:define name="content">
+	    <h1>
+	    	#{lbls.adminEditOrderHeader}  
+	    	<h:outputText value="#{orderBean.orderId}"/> 
+	    </h1>
+	    <h:form>
+	    	<h:dataTable value="#{orderManager.order}" var="ord">
+	    		<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.edit}" style="font-weight: bold" />
+						</f:facet>
+						<h:selectBooleanCheckbox value="#{ord.editable}"
+							onclick="submit()" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.customerId}" style="font-weight: bold" />
+						</f:facet>
+						
+						<h:outputText value="#{ord.customerId}" styleClass="text-output"/>
+		
+					</h:column>
+				<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.orderDate}" style="font-weight: bold" />
+						</f:facet>
+						
+						<h:outputText value="#{ord.orderDate}" styleClass="text-output">
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:outputText>
+				</h:column>
+	    		<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.shipDate}" style="font-weight: bold"/>								
+						</f:facet>
+						
+						<h:outputText value="#{ord.shipDate}">
+							<f:convertDateTime pattern="dd/MM/yyyy" styleClass="text-output"/>
+						</h:outputText>
+				</h:column>
+				
+	    		<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.sLastName}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{ord.sLastName}"
+							rendered="#{ord.editable}" size="10" />
+						<h:outputText value="#{ord.sLastName}"
+							rendered="#{not ord.editable}" styleClass="text-output"/>
+				</h:column>
+				<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.sFirstName}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{ord.sFirstName}"
+							rendered="#{ord.editable}" size="10" />
+						<h:outputText value="#{ord.sFirstName}"
+							rendered="#{not ord.editable}" styleClass="text-output"/>
+				</h:column>
+				<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.sCompany}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{ord.sCompany}"
+							rendered="#{ord.editable}" size="10" />
+						<h:outputText value="#{ord.sCompany}"
+							rendered="#{not ord.editable}" styleClass="text-output"/>
+				</h:column>
+				<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.sAddress1}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{ord.sAddress1}"
+							rendered="#{ord.editable}" size="10" />
+						<h:outputText value="#{ord.sAddress1}"
+							rendered="#{not ord.editable}" styleClass="text-output"/>
+				</h:column>
+				<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.sCity}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{ord.sCity}"
+							rendered="#{ord.editable}" size="10" />
+						<h:outputText value="#{ord.sCity}"
+							rendered="#{not ord.editable}" styleClass="text-output"/>
+				</h:column>
+				<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.sProvince}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{ord.sProvince}"
+							rendered="#{ord.editable}" size="10" />
+						<h:outputText value="#{ord.sProvince}"
+							rendered="#{not ord.editable}" styleClass="text-output"/>
+				</h:column>
+				<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.sCountry}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{ord.sCountry}"
+							rendered="#{ord.editable}" size="10" />
+						<h:outputText value="#{ord.sCountry}"
+							rendered="#{not ord.editable}" styleClass="text-output" />
+				</h:column>
+				<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.sPostalCode}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{ord.sPostalCode}"
+							rendered="#{ord.editable}" size="10" />
+						<h:outputText value="#{ord.sPostalCode}"
+							rendered="#{not ord.editable}" styleClass="text-output"/>
+				</h:column>				
+	    	</h:dataTable>
+	    <h:commandButton value="#{lbls.save}" action="#{orderManager.updateAll()}"/>
+	    </h:form>
+	    <h:messages/>
+	</ui:define>
+	
+</ui:composition>
+</html>

@@ -1,0 +1,508 @@
+@CHARSET "UTF-8";
+/*
+@author : Joseph He
+*/
+
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+.bascule{
+	overflow:auto;
+}
+
+#cltcontent form{
+	width:1550px;
+}
+
+.bascule table{
+	width:100%;
+}
+#repstck .bascule table{
+	width:1130px;
+}
+
+table tr:hover{
+	background-color: #DDE7FF;
+}
+
+#cltcontent table td{
+	margin: 0px 5px;
+}
+
+
+
+#navcontent a{
+	font-size:25px;
+}
+
+#navcontent{
+	padding:36px;
+	text-align:left;
+	padding-right: 20px;
+    padding-left: 20px;
+}
+
+#nav,#content1{
+	float:left;
+}
+
+#footer{
+	clear:both;
+}
+
+.bordure {
+	border: 3px solid red;
+}
+
+#bighead {
+	background-color: #D1D1D1;
+	margin-bottom: 4px;
+	height: 60px;
+}
+
+#bgcolor {
+	background-color: #f1f1f1;
+}
+
+#searchButton {
+	margin-top: 13px;
+	border: 0 none;
+	background: #f1f1f1 url("images/loupe.png") center no-repeat;
+	width: 28px;
+	float: left;
+	height: 28px;
+	cursor: pointer;
+}
+
+#searchBar {
+	margin-top: 12px;
+	width: 460px;
+	height: 30px;
+	float: left;
+	font-size: 15px;
+	/* background: url("images/loupe.png") no-repeat 98% 10px #fcfcfc; */
+	padding-left: 5px;
+	font-size: 16px;
+	font-family: Montserrat, sans-serif;
+	/* 	border: 0 none; */
+	margin-right: 0;
+	outline: none;
+	float: left;
+	box-sizing: border-box;
+	transition: all 0.15s;
+}
+
+#cltcreating {
+	width: 500px;
+}
+
+#log {
+	text-align: center;
+	width: 375px;
+	border-radius: 10px;
+	height: 225px;
+	position: absolute;
+	top: 30%;
+	left: 40%;
+}
+
+#adminLoginForm tr {
+	text-align: right;
+}
+
+#tittle {
+	background-color: #FF913A;
+	border-radius: 10px 10px 0px 0px;
+	height: 55px;
+}
+
+#tittle img {
+	height: auto;
+	width: 490px;
+	margin-top: 12px;
+}
+
+#tittle h1 {
+	width: auto;
+	height: 55px;
+	overflow: hidden;
+	line-height: 1.2em;
+	/* FONT 3D */
+	font-family: 'Arvo', arial, serif;
+	background-color: transparent;
+	border: 0;
+	font-weight: 700;
+	color: #e4f3f9;
+	font-size: 37px;
+	text-align: center;
+	/* Left - Top - Grossir*/
+	text-shadow: -2px -2px 1px #fff, -1px -1px 1px #fff, 1px 1px 1px
+		rgba(232, 247, 255, 0.9), 1px 1px 0 #2a658b, 2px 2px 0 #29638a, 3px
+		3px 0 #286188, 4px 4px 0 #275f85, 5px 5px 0 #265d83, 6px 6px 0 #255a80,
+		7px 7px 0 #24577d, 8px 8px 0 #235479, 9px 9px 0 #215075, 10px 10px 0
+		#1f4c71, 11px 11px 0 #1e486c, 12px 12px 1px rgba(28, 67, 103, 0.5),
+		14px 14px 12px rgba(5, 13, 20, 0.5);
+}
+
+#managepic {
+	display: block;
+	height: 60px;
+	width: auto;
+	padding: 6px 0px 0px 60px;
+}
+
+#adminLoginForm {
+	text-align: center;
+	background-color: white;
+	border-radius: 0px 0px 10px 10px;
+	border: 1px solid #D1D1D1;
+}
+
+#logbody {
+	background-color: #f1f1f1;
+}
+
+table {
+	margin: 20px auto 20px;
+	text-align: center;
+}
+
+#repstck table{
+	padding:0px 20px;
+}
+
+.button {
+	margin: 5px;
+	-moz-box-shadow: inset 0px 2px 23px 0px #ffffff;
+	-webkit-box-shadow: inset 0px 2px 23px 0px #ffffff;
+	box-shadow: inset 0px 2px 23px 0px #ffffff;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed
+		), color-stop(1, #dfdfdf));
+	background: -moz-linear-gradient(center top, #ededed 5%, #dfdfdf 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed',
+		endColorstr='#dfdfdf');
+	background-color: #ededed;
+	/* -webkit-border-top-left-radius:42px;
+	-moz-border-radius-topleft:42px;
+	border-top-left-radius:42px;
+	-webkit-border-top-right-radius:42px;
+	-moz-border-radius-topright:42px;
+	border-top-right-radius:42px;
+	-webkit-border-bottom-right-radius:42px;
+	-moz-border-radius-bottomright:42px;
+	border-bottom-right-radius:42px;
+	-webkit-border-bottom-left-radius:42px;
+	-moz-border-radius-bottomleft:42px;
+	border-bottom-left-radius:42px; */
+	text-indent: 0px;
+	border: 1px solid #dcdcdc;
+	display: inline-block;
+	color: #777777;
+	font-family: Comic Sans MS;
+	font-size: 20px;
+	font-weight: bold;
+	font-style: normal;
+	height: 38px;
+	line-height: 38px;
+	width: 143px;
+	text-decoration: none;
+	text-align: center;
+	-webkit-border-radius: 42px;
+	margin-bottom: 25px;
+	border-radius: 6px 6px 6px 6px !important;
+}
+
+.button:hover {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf
+		), color-stop(1, #ededed));
+	background: -moz-linear-gradient(center top, #dfdfdf 5%, #ededed 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf',
+		endColorstr='#ededed');
+	background-color: #dfdfdf;
+}
+
+.button:active {
+	position: relative;
+	top: 1px;
+}
+
+#manclient tr,#manorder tr {
+	text-align: right;
+}
+
+.coller tr td:first-child {
+	text-align: right;
+}
+
+.coller tr td:last-child {
+	text-align: left;
+}
+
+#authcontent span{
+	font-size:25px;
+}
+
+.boxe, #choosecateg, #crtcateg, #cltcreate,#cltedit, #insrtauth,#usrcreate,#usredit,#bookinsert,#reportreord,#reporting,#manreview,#authsale,#cltsale,#pubsale,#mansale,#repstck,#topclt,#topsell,#totalsale,#zerosale
+	{
+	clear: both;
+	text-align: center;
+	border: 1px solid #D1D1D1;
+	width: 860px;
+	margin: 20px auto;
+	border-radius: 10px;
+	background-color: white;
+}
+
+#navig {
+	clear: both;
+	text-align: center;
+	border: 1px solid #D1D1D1;
+	margin: 20px auto;
+	border-radius: 10px;
+	background-color: white;
+	float:left;
+	margin-right: 0px;
+	margin-left: 0px;	
+	width: 220px;
+}
+
+#zerosale form{
+	padding:25px;
+}
+#content{
+	margin:auto;
+	width:1191px;
+
+}
+
+#cltedit,#reportreord,#repstck {
+	width: 900px;
+}
+
+#reporting {
+	width: 250px;
+}
+
+#reporting a:link {
+	font-size: 20px
+}
+
+#search {
+	float: right;
+	margin: 5px 20px 0px 0px;
+}
+/* #entete{
+	background-color:#D1D1D1;
+	margin-bottom:4px;
+	height:60px;
+
+} */
+#searchbar {
+	background-color: white;
+	/* background: url("images/search-white.png"") no-repeat 30px 18px black; */
+	/*!;)*/
+	border: 1px solid #d1d1d1;
+	font: bold 12px Arial, Helvetica, Sans-serif;
+	color: #bebebe;
+	width: 200px;
+	padding: 6px 15px 6px 35px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+	-webkit-transition: all 0.7s ease 0s;
+	-moz-transition: all 0.7s ease 0s;
+	-o-transition: all 0.7s ease 0s;
+	margin: 15px 0px 0px 200px;
+}
+
+#entete {
+	background-color: #D1D1D1;
+	margin-bottom: 4px;
+	height: 60px;
+}
+
+#searchbar:focus {
+	width: 400px;
+}
+
+.aligner {
+	display: inline-block;
+	float: left;
+}
+
+#managepic1 {
+	display: block;
+	width: auto;
+	height: 25px;
+	padding: 12px 0px 0px 55px;
+}
+
+/* #entete{
+	background-color:#D1D1D1;
+	margin-bottom:4px;
+	height:60px;
+	width:1000px;
+} */
+#logo {
+	height: auto;
+	width: 180px;
+	margin: 5px 40px 0px 5px;
+}
+
+#logo:hover {
+	background-color: white;
+	border-radius: 5px;
+}
+.headmenu{
+	height:62px;
+	margin-left:227px;
+	width:366px;
+}
+
+.aligner p {
+	
+	height: 30px;
+	padding: 18px 24px 12px 20px;
+	color: #7c7c7c;
+	font-weight: bold;
+	font-size: 20px;
+
+}
+
+.aligner p:hover {
+	background-color: #d8dfea;
+	color: white;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+* #pied1 {
+	margin-top: 20px;
+	text-align: center;
+	border-top: 1px solid #D1D1D1;
+}
+
+#pied a:link {
+	margin: 10px;
+}
+
+.top {
+	vertical-align: top;
+}
+
+.info {
+	height: 202px;
+	overflow: auto;
+}
+
+/*CSS -Svetla*/
+											
+					/*adminEditBoook*/
+.error
+{
+	color:red;
+}
+					
+					
+#adminEditBooks
+{
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+}					
+					
+.editBookOutputTxt
+{
+	width:200px;
+	float:left;
+	text-align:left;
+	padding-left:10px;
+	font-size:16px;
+}
+
+.editBooksSelectOneMenu
+{
+	width:250px;
+	font-size:16px;
+	margin-right: 15px;
+	margin-bottom:15px;
+	height:38px;
+}
+
+.editBoosSelectItems
+{
+	width:250px;
+	font-size:16;
+}
+
+legend
+{
+	font-size:16px;
+}
+
+				/*adminInsertAuthor*/
+.insertAuthorSelectOne
+{
+	width:200px;
+	font-size:16px;
+	margin-right: 15px;
+	margin-bottom:15px;
+	height:38px;
+}
+
+
+
+.insertAuthorSelectItems
+{
+	width:200px;
+	font-size:16px;
+}
+
+.insertAuthorInputText
+{
+	width:100px;
+	float:left;
+	text-align:left;
+	margin-right:0px;
+	font-size:16px;
+	height:38px;
+	margin-bottom:15px;
+}
+
+.insertAuthorOutputTxt
+{
+	width:100px;
+	float:right;
+	text-align:right;
+	padding-left:5px;
+	font-size:16px;
+}
+
+#adminInsertAuthor
+{
+	width:90%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.text-input
+{
+	width:200px;
+	font-size:16px;
+}
+
+
+.text-output
+{
+	font-size:14px;
+}
+

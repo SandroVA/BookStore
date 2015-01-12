@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<h:outputStylesheet library="css" name="userSiteStyle.css" />
+	<script type="text/javascript"
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+</h:head>
+<!-- Created by: Sandro, Martin
+ 	 Updated by Joseph He-->
+<h:body>
+	<ui:composition>
+		<script type="text/javascript"
+			src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<h:outputScript library="javascript" name="javascript.js"></h:outputScript>
+		<!-- These are the URLs at the top right of the page -->
+		<div id="top-head">
+			<h:panelGroup layout="block" id="headerURLs">
+				<h:link value="Shopping Cart"
+					outcome="userShoppingCart.xhtml?bookId=-1" styleClass="headerURL">
+					<h:graphicImage library="images" name="cart-icon.png" id="cartIcon"
+						alt="cart" />
+				</h:link>
+
+				<h:outputText rendered="#{not userBean.editable}">
+				|
+
+		
+				<h:link value="Login" outcome="userLogin" styleClass="headerURL"
+						rendered="#{not userBean.editable}">
+					</h:link>
+				</h:outputText>
+
+				|
+
+		
+					<h:link value="Site Map" outcome="userSiteMap"
+					styleClass="headerURL">
+				</h:link>
+				
+				|
+				
+					<h:link value="Help" outcome="userHome" styleClass="headerURL">
+				</h:link>
+				
+				|
+				
+					<h:link value="French" outcome="userHome" styleClass="headerURL">
+				</h:link>
+
+			</h:panelGroup>
+		</div>
+		<!-- These are the Tabbed URLs next to the Logo -->
+		<h:panelGroup layout="block" id="header">
+			<!-- Moose Books Logo -->
+			<h:graphicImage library="images" name="mooseBooks.png" id="logo"
+				alt="logo" />
+			<!-- This is the Search bar -->
+			<h:form>
+				<div id="titlesearchbar">
+					<!-- <h3>Search our books:</h3>  -->
+					<div id="searchdiv">
+						<div id="dd" class="dropdownwrap">
+							<h:selectOneMenu id="dropdown" value="#{searchBean.field}"
+								>
+								<f:selectItem itemValue="title" itemLabel="Title" />
+								<f:selectItem itemValue="author" itemLabel="Author" />
+								<f:selectItem itemValue="isbn" itemLabel="ISBN" />
+							</h:selectOneMenu>
+						</div>
+
+						<div>
+							<h:inputText id="searchBar" value="#{searchBean.value}" styleClass="searchBar"></h:inputText>
+							<h:commandButton value="Search" type="submit"
+								action="#{searchManager.search(searchBean)}" id="searchButton" styleClass="searchButton"/>
+							<!-- Action needs to be changed to initiate search method which returns "userSearchResults" -->
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</h:panelGroup>
+		<h:panelGroup layout="block" class="navBar">
+			<h:link value="Home" outcome="userHome" styleClass="navBarElement">
+			</h:link>
+			<h:link value="Categories" outcome="userCategories"
+				styleClass="navBarElement">
+			</h:link>
+			<h:link value="Contact Us" outcome="userContactUs"
+				styleClass="navBarElement">
+			</h:link>
+			<h:link value="My Account" outcome="userMyAccount"
+				styleClass="navBarElement">
+			</h:link>
+		</h:panelGroup>
+	</ui:composition>
+</h:body>
+</html>

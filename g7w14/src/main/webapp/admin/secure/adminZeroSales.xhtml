@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--Created by : Ian Ozturk-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+
+	<ui:define name="content">
+		<div id="zerosale">
+			<div id="tittle"><h1>#{lbls.zeroSalesHead}</h1></div>
+			
+			<h:form>
+				<h:dataTable rendered="#{zeroSalesReportManager.render}"
+					value="#{zeroSalesReportManager.getZeroSales()}" var="book">
+					<h:column>
+						<f:facet name="header">#{lbls.isbn}</f:facet>
+						<h:outputText value="#{book.isbn}" style="font-weight: bold" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{lbls.title}</f:facet>.
+					<h:outputText value="#{book.title}" style="font-weight: bold" />
+					</h:column>
+				</h:dataTable>
+				<h:panelGrid columns="4">
+					<label for="CalendarStart">#{lbls.startDate}</label>
+					<rich:graphValidator value="#{calendarBean}">
+						<rich:calendar id="CalendarStart"
+							value="#{calendarBean.startSelectedDate}"
+							timeZone="#{calendarBean.timeZone}"
+							datePattern="#{lbls.datePattern}">
+						</rich:calendar>
+	
+						<label for="CalendarEnd">#{lbls.endDate}</label>
+						<rich:calendar id="CalendarEnd"
+							value="#{calendarBean.endSelectedDate}"
+							timeZone="#{calendarBean.timeZone}"
+							datePattern="#{lbls.datePattern}">
+						</rich:calendar>
+					</rich:graphValidator>
+				</h:panelGrid>
+				<h:commandButton styleClass="button" value="#{lbls.createReport}"
+					action="#{zeroSalesReportManager.setRender(true)}" />
+			</h:form>
+			<h:messages/>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova 
+	 Date: 24.03.2014
+	 Version: 1.0 
+	 Updated by Joseph He-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+	
+	<ui:define name="content">
+		<div class="boxe">
+			<div id="tittle"><h1>Choose a publisher</h1></div>
+				<h:form id="publisherList">
+					<h:panelGroup >
+					<h1>#{lbls.adminInsertPublisherCategory}</h1>
+				    <h:outputText value="#{lbls.publisher} :" />
+						<h:selectOneMenu value="#{publisherBean.publisherName}" >
+								<f:selectItems value="#{publisherManager.allNames}" />
+						<f:ajax execute="@this" action="change" render="@this"/>
+						</h:selectOneMenu>
+				
+					</h:panelGroup>	
+				</h:form>
+				<br/>
+		</div>
+		<br/>
+		<div class="boxe">
+			<div id="tittle"><h1><h:outputText value="#{lbls.createPublisher}"/></h1></div><br/>
+			<h:form id="savePublisher">
+				<h:outputText value="#{lbls.publisher}"/>
+				<h:inputText id="pubName" value="#{publisherBean.publisherName}"
+				required="true" requiredMessage="#{validation.publisherNameRequired}"
+				validatorMessage="#{validaton.badFormatPublisherName}">
+					<f:validateLength minimum="1" maximum="100"/>
+					<f:validateRegex pattern="^[\w \\ , &amp; - ']+$"/>			
+				</h:inputText>
+				
+				
+				<h:commandButton styleClass="button"  value="#{lbls.save}" action="#{publisherManager.savePublisher}" update="publisherList" />	<br/>
+					
+				<h:messages globalOnly="true" />
+			</h:form>
+		</div>
+	<h:form>	
+			<h:commandButton styleClass="button" value="#{lbls.next}" action="#{publisherManager.insertBook}" />
+	</h:form>
+		
+	</ui:define>
+			
+</ui:composition>
+</html>

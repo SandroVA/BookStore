@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova
+	 Date: 04.03.2014
+	 Version: 1.0 
+	 Updated by Joseph He-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+
+	<ui:define name="content">
+		<div id="totalsale">
+		<div id="tittle"><h1>#{lbls.totalsHead}</h1></div>		
+			<h:form>	
+				<rich:graphValidator value="#{calendarBean}">		
+				<label for="CalendarStart">#{lbls.startDate}</label>
+					<rich:calendar id="CalendarStart"
+						value="#{calendarBean.startSelectedDate}"
+						timeZone="#{calendarBean.timeZone}"
+						datePattern="#{lbls.datePattern}">
+					</rich:calendar>
+					
+				 <label for="CalendarEnd">#{lbls.endDate}</label>
+					<rich:calendar id="CalendarEnd"
+						value="#{calendarBean.endSelectedDate}"
+						timeZone="#{calendarBean.timeZone}"
+						datePattern="#{lbls.datePattern}">
+					</rich:calendar>
+				</rich:graphValidator>
+				<br/>
+				 <h:commandButton styleClass="button" value="#{lbls.createReport}" action="#{total.setRender(true)}"/>
+				 <h:commandButton styleClass="button" value="#{lbls.reset}" action="adminTotalSales"
+			immediate="true" />	
+				 <h:dataTable  styleClass="reportTable" rendered="#{total.render}" value="#{total.getTotalSales()}" var="totalValues">
+				 	<h:column>
+				 		<f:facet name="header">#{lbls.netValue}</f:facet>
+				 		<h:outputText value="#{totalValues.netValue}" style="font-weight: bold"/>		 	
+				 	</h:column>
+				 	<h:column>
+				 		<f:facet name="header">#{lbls.taxes}</f:facet>
+				 		<h:outputText value="#{totalValues.taxes}" style="font-weight: bold"/>		 	
+				 	</h:column>
+				 	<h:column>
+				 		<f:facet name="header">#{lbls.grossTotal}</f:facet>
+				 		<h:outputText value="#{totalValues.grossTotal}" style="font-weight: bold"/>		 	
+				 	</h:column>
+				 </h:dataTable>
+				
+			</h:form>
+			<h:messages/>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>

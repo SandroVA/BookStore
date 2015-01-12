@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova 
+	 Date: 26.03.2014
+	 Version: 1.0 
+	 Updated by Joseph He-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<!-- This code is taken entirely from JSFRichFacesFileUpload example -->
+<ui:composition template="/templates/adminTemplate.xhtml">
+	
+	<ui:define name="content">
+	   
+		<h:form>
+			<h:panelGrid columns="4">
+				<h:outputText 
+					value="Choose your Ads :"   styleClass="text-output"/>		
+				<h:selectOneMenu value="#{banner.banner_Url}"  >
+					<f:selectItems value="#{bannerManager.getAll()}"  />
+				</h:selectOneMenu>
+				<h:commandButton   value="Choose" action="#{bannerManager.changeAd()}" styleClass="button" />
+			</h:panelGrid>
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+</html>

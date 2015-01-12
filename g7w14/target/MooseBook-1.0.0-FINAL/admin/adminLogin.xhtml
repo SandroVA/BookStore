@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova and Joseph He
+	 Date: 01.03.2014
+	 Version: 1.0 -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/adminLoginTemplate.xhtml">
+	
+	<ui:define name="content">
+		<div id="log">
+			<div id="logtittle">
+				<h:graphicImage id="managepic" library="images" name="moosemanager.png"/>
+			</div>
+			<div id="adminLoginForm">
+				<h:form styleClass="coller">
+				 
+				   	<h:panelGrid columns="2">	
+				   				<h:outputText value="#{lbls.username} :"/>
+				   		
+				   				<h:inputText id="username" value="#{loginBean.username}"/>	 
+				   	
+				   				<h:outputText value="#{lbls.password} :"/>
+				   		
+				   				<h:inputSecret value="#{loginBean.password}"/>
+					</h:panelGrid>
+				   	<h:commandButton styleClass="button" value="#{lbls.login}" action="#{loginBean.doLogin}" />
+				   	
+				 </h:form>
+			</div>
+	   </div>
+	</ui:define>
+	
+</ui:composition>
+</html>

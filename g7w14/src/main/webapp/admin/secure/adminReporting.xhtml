@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova
+	 Date: 04.03.2014
+	 Version: 1.0 -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+	
+	<ui:define name="content">
+	    <div id="reporting">
+	    	<div id="tittle">
+	    		<h1>REPORTING</h1>
+	    	</div>
+	    	<h:panelGrid>
+	    	<h:link value="#{lbls.totalSales}" outcome="adminTotalSales"/>
+	    	<h:link value="#{lbls.salesByClient}" outcome="adminSalesByClient"/>
+	    	<h:link value="#{lbls.salesByAuthor}" outcome="adminSalesByAuthor"/>
+	    	<h:link value="#{lbls.salesByPublisher}" outcome="adminSalesByPublisher"/>
+	    	<h:link value="#{lbls.topSellers}" outcome="adminTopSellers"/>
+	    	<h:link value="#{lbls.topClients}" outcome="adminTopClient"/>
+	    	<h:link value="#{lbls.zeroSales}" outcome="adminZeroSales"/>
+	    	<h:link value="#{lbls.reorderReport}" outcome="adminReorderReport"/>
+	    	<h:link value="#{lbls.stockReport}" outcome="adminStockReport"/>
+	    
+	    </h:panelGrid>
+	    </div>
+	</ui:define>
+	
+</ui:composition>
+</html>

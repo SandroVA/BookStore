@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core">
+<!-- Created by: Sandro -->	
+<h:head> 
+	<h:outputStylesheet library="css" name="userSiteStyle.css"  />
+</h:head>
+
+	<ui:composition template="/templates/userTemplate.xhtml">
+		<ui:define name="content">
+			<h:panelGroup layout="block" styleClass="title">About Us</h:panelGroup>
+			The following website has been designed and programmed entirely by Svetlana Shopova, Sandro Victoria Arena, Ian Ozturk, Martin Nafekh and Joseph He. 
+			<h:outputText value="&lt;br/&gt;" escape="false" />
+			<h:panelGroup layout="block" id="title">Contact Us</h:panelGroup>
+		    Have you any questions or comments concerning our services? Or if you have general questions? Feel free to contact us anytime and we will assist you!
+			<h:outputText value="&lt;br/&gt;" escape="false" />
+			<h:outputText value="&lt;br/&gt;" escape="false" />
+			moose.moosebooks@moosebooks.moose | 1-800-MooseBooks
+			<h:outputText value="&lt;br/&gt;" escape="false" />
+			<h:outputText value="&lt;br/&gt;" escape="false" />
+			123 Random Address
+			<h:outputText value="&lt;br/&gt;" escape="false" />
+			Montreal, Quebec, Canada
+			<h:outputText value="&lt;br/&gt;" escape="false" />
+			H1E 2K7
+		</ui:define>
+	</ui:composition>
+</html>

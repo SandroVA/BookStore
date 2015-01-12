@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--Created by : Ian Ozturk 
+	Updated by Joseph He-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+	
+	<ui:define name="content">
+		<div id="repstck">
+			<div id="tittle">
+				<h1>STOCK REPORT</h1>
+			</div>
+			<div class="bascule">
+				<h:dataTable value="#{stockReportManager.getAll()}" var="book" >
+					<h:column>
+						<f:facet name="header">#{lbls.isbn}</f:facet>
+						<h:outputText value="#{book.isbn}" style="font-weight: bold" />   
+		            </h:column>
+		            <h:column>
+						<f:facet name="header">#{lbls.title}</f:facet>.
+						<h:outputText value="#{book.title}" style="font-weight: bold" />              
+		            </h:column>
+		            <h:column>
+						<f:facet name="header">#{lbls.wholesalePrice}</f:facet>
+						<h:outputText value="#{book.wholesalePrice}" style="font-weight: bold" />               
+		            </h:column>
+		            <h:column>
+						<f:facet name="header">#{lbls.listPrice}</f:facet>
+						<h:outputText value="#{book.listPrice}" style="font-weight: bold" />               
+		            </h:column>
+		            <h:column>
+						<f:facet name="header">#{lbls.numberCopies}</f:facet>
+						<h:outputText value="#{book.numberCopies}" style="font-weight: bold" />             
+		            </h:column>
+				</h:dataTable>
+			</div>
+		</div>
+	</ui:define>
+	
+</ui:composition>
+</html>

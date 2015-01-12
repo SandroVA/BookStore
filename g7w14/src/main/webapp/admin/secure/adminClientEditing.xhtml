@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova
+	 Date: 10.03.2014
+	 Version: 1.0 
+	 Updated by Joseph He-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+	
+	<ui:define name="content">
+		<div id="cltedit">
+			<div id="tittle"><h1>CLIENT EDITING</h1></div>
+			<div class="bascule" id="cltcontent">
+			<h:form>
+				<h:dataTable value="#{customerManager.allClients}" var="customer">
+					<h:column >
+						<f:facet name="header">
+							<h:outputText value="#{lbls.edit}" style="font-weight: bold" />
+						</f:facet>
+						<h:selectBooleanCheckbox value="#{customer.editable}"
+							onclick="submit()" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.customerId}" style="font-weight: bold" />
+						</f:facet>
+						
+						<h:outputText value="#{customer.customerId}" styleClass="text-output"/>
+		
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.userId}" style="font-weight: bold" />
+						</f:facet>				
+						<h:outputText value="#{customer.userId}" styleClass="text-output"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.title}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{customer.title}"
+							rendered="#{customer.editable}" size="10" />
+						<h:outputText value="#{customer.title}"
+							rendered="#{not customer.editable}"  styleClass="text-output"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.l_Name}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{customer.l_Name}"
+							rendered="#{customer.editable}" size="10" />
+						<h:outputText value="#{customer.l_Name}"
+							rendered="#{not customer.editable}"  styleClass="text-output"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.f_Name}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{customer.f_Name}"
+							rendered="#{customer.editable}" size="10" />
+						<h:outputText value="#{customer.f_Name}"
+							rendered="#{not customer.editable}"  styleClass="text-output"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.company}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{customer.company}"
+							rendered="#{customer.editable}" size="10" />
+						<h:outputText value="#{customer.company}"
+							rendered="#{not customer.editable}"  styleClass="text-output"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.address1}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{customer.address1}"
+							rendered="#{customer.editable}" size="10" />
+						<h:outputText value="#{customer.address1}"
+							rendered="#{not customer.editable}" styleClass="text-output"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.address2}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{customer.address2}"
+							rendered="#{customer.editable}" size="10" />
+						<h:outputText value="#{customer.address2}"
+							rendered="#{not customer.editable}" styleClass="text-output" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.city}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{customer.city}"
+							rendered="#{customer.editable}" size="10" />
+						<h:outputText value="#{customer.city}"
+							rendered="#{not customer.editable}" styleClass="text-output"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.province}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{customer.province}"
+							rendered="#{customer.editable}" size="10" />
+						<h:outputText value="#{customer.province}"
+							rendered="#{not customer.editable}" styleClass="text-output" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.country}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{customer.country}"
+							rendered="#{customer.editable}" size="10" />
+						<h:outputText value="#{customer.country}"
+							rendered="#{not customer.editable}" styleClass="text-output"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.postal_Code}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{customer.postal_Code}"
+							rendered="#{customer.editable}" size="10" >
+							<f:validateRegex pattern="^[ABCEGHJKLMNPRSTVXYabceghjklmnprstvxy]{1}\d{1}[A-Za-z]{1} *\d{1}[A-Za-z]{1}\d{1}$"/>
+							</h:inputText>
+						<h:outputText value="#{customer.postal_Code}"
+							rendered="#{not customer.editable}" styleClass="text-output"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.home_Phone}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{customer.home_Phone}"
+							rendered="#{customer.editable}" size="10" >
+							<f:validateRegex pattern="^\d{3}\-\d{3}\-\d{4}$"/>
+							</h:inputText>
+						<h:outputText value="#{customer.home_Phone}"
+							rendered="#{not customer.editable}" styleClass="text-output"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.cell_Phone}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{customer.cell_Phone}"
+							rendered="#{customer.editable}" size="10" >
+							<f:validateRegex pattern="^\d{3}\-\d{3}\-\d{4}$"/>
+							</h:inputText>
+						<h:outputText value="#{customer.cell_Phone}"
+							rendered="#{not customer.editable}" styleClass="text-output"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.email}" style="font-weight: bold" />
+						</f:facet>
+						<h:inputText value="#{customer.email}"
+							rendered="#{customer.editable}" size="10" />
+						<h:outputText value="#{customer.email}"
+							rendered="#{not customer.editable}" styleClass="text-output"/>
+					</h:column>
+		
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{lbls.totals}"/>
+						</f:facet>
+						<h:outputText value="#{customerManager.getTotalSalesByName(customer.f_Name, customer.l_Name, customer.address1)}"/>
+					</h:column>
+				</h:dataTable>
+				<h:commandButton styleClass="button" value="#{lbls.save}" action="#{customerManager.updateAll()}"/>
+				<h:messages/>	 
+			</h:form>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>

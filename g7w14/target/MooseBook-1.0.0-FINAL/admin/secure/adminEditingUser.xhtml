@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova
+	 Date: 10.03.2014
+	 Version: 1.0 
+	 Updated by Joseph He-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+	
+	<ui:define name="content">
+	    <div id="usredit">
+	    	<div id="tittle">
+	    		<h1>EDITING USER</h1>
+	    	</div>
+	    	<h:form>
+			    <h:dataTable value="#{userManager.allUsers}" var="user">
+			    	<h:column>
+			    		<f:facet name="header">
+				    		<h:outputText value="#{lbls.edit}" 
+			                                style="font-weight: bold"/>
+			             </f:facet>
+			             <h:selectBooleanCheckbox value="#{user.editable}" onclick="submit()"/>
+		               
+			    	</h:column>
+			    	<h:column>
+		               <f:facet name="header">
+		                  <h:outputText value="#{lbls.username}" 
+		                                style="font-weight: bold" styleClass="text-output"/>
+		               </f:facet>
+		                
+		               <h:outputText value="#{user.username}" />
+		            </h:column>
+			    	<h:column>
+		               <f:facet name="header">
+		                  <h:outputText value="#{lbls.password}" 
+		                                style="font-weight: bold"/>
+		               </f:facet>
+		               <h:inputText value="#{user.password}" rendered="#{user.editable}" 
+		                            size="10"/>
+		               <h:outputText value="#{user.password}" rendered="#{not user.editable}" styleClass="text-output"/>
+		            </h:column>
+			    </h:dataTable>
+			    <h:commandButton styleClass="button" value="#{lbls.save}" 
+	                          action="#{userManager.updateAll}"/>
+		    
+		    </h:form>
+	    </div>
+	</ui:define>
+	
+</ui:composition>
+</html>

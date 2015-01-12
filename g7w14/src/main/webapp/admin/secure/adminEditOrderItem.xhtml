@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova 
+	 Date: 22.03.2014
+	 Version: 1.0 -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<!-- This page gives opportunity to the admit to discard books from the
+order making them not available -->
+<ui:composition template="/templates/adminTemplate.xhtml">
+	<ui:define name="content">
+		<h1>
+			#{lbls.adminEditOrderHeader}
+			<h:outputText value="#{orderBean.orderId}" />
+		</h1>
+		<h:form>
+			<h:dataTable value="#{orderItemManager.allItems}" var="item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{lbls.bookId}" />
+					</f:facet>
+					<h:outputText value="#{item.bookId}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{lbls.title}" />
+					</f:facet>
+					<h:outputText value="#{item.bookTitle}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{lbls.quantity}" />
+					</f:facet>
+
+					<h:outputText value="#{item.quantity}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{lbls.price}" />
+					</f:facet>
+					<h:outputText value="#{item.price}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{lbls.available}" />
+					</f:facet>
+					<h:selectBooleanCheckbox value="#{item.available}" />
+				</h:column>
+			</h:dataTable>
+			<h:commandButton value="#{lbls.edit}"
+				action="#{orderItemManager.updateAll}" />
+		</h:form>
+		<h:messages/>
+	</ui:define>
+
+</ui:composition>
+</html>

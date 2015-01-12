@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova
+	 Date: 24.03.2014
+	 Version: 1.0 
+	 Updated by Joseph He-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<!-- This page allow to admin to choose category for the book or to create a new one   -->
+<ui:composition template="/templates/adminTemplate.xhtml">
+	
+	<ui:define name="content">
+		<div id="choosecateg">
+			<div id="tittle"><h1>Choose a category
+			</h1></div>
+			<h:graphicImage library="images" name="question.jpg"
+				alt="questionMark" title=" #{lbls.helpAdminInsertCategory}" />
+			<h:form id="categoryList">
+				<h:panelGrid >
+				<h:outputText value="#{lbls.category}" />
+			    <h:selectOneMenu value="#{categoryBean.name}">
+							<f:selectItems value="#{categoryManager.names}" />
+					<f:ajax execute="@this" action="change" render="@this"/>	
+				</h:selectOneMenu> 
+				</h:panelGrid>
+			</h:form>
+		</div>
+		
+		<div id="crtcateg">
+			<div id="tittle"><h1><h:outputText value="#{lbls.createCategory}"/></h1></div>
+			
+			<h:form>
+				<h:outputText value="#{lbls.categoryName}:" />
+					<h:inputText id="categoryName" value="#{categoryBean.name}" required="true"  
+					validatorMessage="#{validation.badCategory}" 
+					 requiredMessage="#{validation.categoryRequired}">
+						<f:validateLength minimum="1" maximum="200"/>
+						<f:validateRegex pattern="^[\w ']+$"></f:validateRegex>
+					</h:inputText>
+					
+					<h:commandButton  styleClass="button" value="#{lbls.save}" action="#{categoryManager.saveCategory()}" update="categoryList"/><br/><br/>
+					<h:messages />
+			</h:form>
+		</div>
+		<h:form>
+			<h:commandButton  styleClass="button" value="#{lbls.next}" action="#{categoryManager.setBookId}"/>
+		</h:form>
+		
+	</ui:define>
+	
+</ui:composition>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core">
+<!-- Created by: Sandro 
+	 Updated by Joseph He-->	
+<h:head> 
+	<h:outputStylesheet library="css" name="userSiteStyle.css"  />
+</h:head>
+
+	<ui:composition template="/templates/userTemplate.xhtml">
+		<ui:define name="content">
+		
+			<h:panelGroup layout="block" id="title">Categories</h:panelGroup>
+		    <h:panelGroup layout="block" id="subtitle">Click on the categories below to browse through the catalog.</h:panelGroup>
+		    <h:outputText value="&lt;br/&gt;" escape="false" />
+		    
+		    <ui:repeat value="#{categoryManager.categoryNames}" var="item">
+		    	<h:outputText id="txtcat" value="- "  />
+				<h:link value="#{item.name}" outcome="userGetCategory?includeViewParams=true" id="catlink">
+		    		<f:param name="categoryId" value="#{item.id}"/>
+		    		<f:param name="categoryName" value="#{item.name}"/>
+				</h:link><br/><br/> 
+			</ui:repeat>
+		</ui:define>
+	</ui:composition>
+</html>

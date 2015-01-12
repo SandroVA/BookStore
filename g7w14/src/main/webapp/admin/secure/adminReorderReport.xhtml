@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Ian Ozturk -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+	<ui:define name="content">
+		<div id="reportreord">
+			<div id="tittle">
+				<h1>REORDER REPORT</h1>
+			</div>
+			
+			<h:dataTable value="#{reorderReportManager.getAll()}" var="reorderReport">
+				<h:column>
+					<f:facet name="header">#{lbls.isbn}</f:facet>
+	               <h:outputText value="#{reorderReport.isbn}" style="font-weight: bold" /> 
+	            </h:column>
+	            <h:column>
+					<f:facet name="header">#{lbls.title}</f:facet>
+	               <h:outputText value="#{reorderReport.title}" style="font-weight: bold" /> 
+	            </h:column>
+	            <h:column>
+					<f:facet name="header">#{lbls.authorFirst}</f:facet>
+	              <h:outputText value="#{reorderReport.authorFirst}" style="font-weight: bold" /> 
+	            </h:column>
+	            <h:column>
+					<f:facet name="header">#{lbls.authorLast}</f:facet>
+	              <h:outputText value="#{reorderReport.authorLast}" style="font-weight: bold" /> 
+	            </h:column>
+	            <h:column>
+					<f:facet name="header">#{lbls.publisher}</f:facet>
+	               <h:outputText value="#{reorderReport.publisher}" style="font-weight: bold" /> 
+	            </h:column>
+	            <h:column>
+					<f:facet name="header">#{lbls.numberCopies}</f:facet>
+	               <h:outputText value="#{reorderReport.numberCopies}" style="font-weight: bold" /> 
+	            </h:column>
+			</h:dataTable>
+	
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

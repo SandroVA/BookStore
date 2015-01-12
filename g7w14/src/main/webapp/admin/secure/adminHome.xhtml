@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+
+	<ui:define name="content">
+	    <h:form>
+		<h1>Welcome #{loginBean.username}</h1>
+		<br />
+		<h:outputText value="This is administration page !" style="font-size:18px;"/>
+		<br />
+		<h:commandLink action="#{loginBean.doLogout}" value="Logout" style="font-size:14px;"/>
+	</h:form>
+	
+	</ui:define>
+	
+</ui:composition>
+</html>

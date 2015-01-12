@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Created by: Svetlana Shopova
+	 Date: 29.03.2014
+	 Version: 1.0 -->
+	 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+	
+	<ui:define name="content">
+	   <h1>
+	   <h:graphicImage library="images" name="question.jpg"
+				alt="questionMark" title=" #{lbls.helpadminAddOldBooks}" />
+	   #{lbls.adminAddOldBooksHeader}</h1><br/>
+	   
+	   <h:form>
+	   		<h:dataTable value="#{bookManager.data}" var="book">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{lbls.edit}" styleClass="text-output" style="font-weight: bold" />
+					</f:facet>
+					<h:selectBooleanCheckbox value="#{book.editable}"
+						onclick="submit()" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{lbls.bookId}" style="font-weight: bold" />
+					</f:facet>
+
+					<h:outputText value="#{book.bookId}" />
+
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{lbls.isbn}" style="font-weight: bold" />
+					</f:facet>
+
+					
+					<h:outputText value="#{book.isbn}" styleClass="text-output" />
+
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{lbls.title}" style="font-weight: bold" />
+					</f:facet>
+					
+					<h:outputText value="#{book.title}" styleClass="text-output" />
+
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{lbls.numberCopies}"
+							style="font-weight: bold" />
+					</f:facet>
+					<h:inputText value="#{book.numberCopies}"
+						rendered="#{book.editable}" size="10" 
+						validatorMessage="#{validation.badNumberCopies}" 
+							converterMessage="#{validation.badFormatNumberOfCopies}">
+							<f:convertNumber minIntegerDigits="0"/>
+							<f:validateLongRange minimum="1" maximum="9999"/>
+							<f:ajax event="change" render="copiesError" />
+					</h:inputText>
+					 <h:outputText value="#{book.numberCopies}"
+						rendered="#{not book.editable}"  styleClass="text-output"/> 
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{lbls.wholesalePrice}"
+							style="font-weight: bold" />
+					</f:facet>
+					<h:inputText value="#{book.wholesalePrice}"
+						rendered="#{book.editable}" size="10" 
+						validatorMessage="#{validation.badWholesale}" converterMessage="#{validation.badFormatWholesale}">
+						<f:convertNumber maxFractionDigits="2" />
+							<f:validateDoubleRange minimum="0.01" maximum="9999.00"/>
+							
+							<f:ajax event="change" render="wholesaleError" />
+						</h:inputText>
+					<h:outputText value="#{book.wholesalePrice}"
+						rendered="#{not book.editable}" styleClass="text-output"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{lbls.listPrice}" style="font-weight: bold" />
+					</f:facet>
+					<h:inputText value="#{book.listPrice}" rendered="#{book.editable}"
+						size="10"/>						
+							
+					<h:outputText value="#{book.listPrice}"
+						rendered="#{not book.editable}"  styleClass="text-output" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{lbls.salePrice}" style="font-weight: bold" />
+					</f:facet>
+					<h:inputText value="#{book.salePrice}" rendered="#{book.editable}"
+						size="10" converterMessage="#{validation.badFormatSalePrice}"
+							validatorMessage="#{validation.badSalePrice}" >
+								<f:validateDoubleRange minimum="0.00" maximum="1000.00"/>
+								<f:convertNumber maxFractionDigits="2" />
+								<f:ajax event="change" render="salePriceError" />
+						</h:inputText>
+					<h:outputText value="#{book.salePrice}"
+						rendered="#{not book.editable}" styleClass="text-output" />
+				</h:column>				
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{lbls.removalStatus}"
+							style="font-weight: bold" />
+					</f:facet>
+					<h:selectBooleanCheckbox value="#{book.removalStatus}" />
+				</h:column>
+				
+			</h:dataTable>
+			<h:commandButton styleClass="button" value="#{lbls.save}"
+				action="#{bookManager.addNewBook()}" />
+	   
+	   		<h:commandButton styleClass="button" value="#{lbls.back}"
+				action="#{authorManager.refreshBeans()}" />
+			
+			<h:message id="salePriceError" for="salePrice" style="color:red"/>
+			<h:message id="listPriceError" for="listPrice" style="color:red"/>
+			<h:message id="wholesaleError" for="wholesale" style="color:red"/>
+			<h:message id="copiesError" for="numberCopies" style="color:red"/>
+			<h:messages />
+	   </h:form>
+	</ui:define>
+	
+</ui:composition>
+</html>

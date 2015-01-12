@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<!-- Created by: Svetlana Shopova
+	 Date: 30.03.2014
+	 Version: 1.0 -->
+	 
+	 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/adminTemplate.xhtml">
+	
+	<ui:define name="content">
+	    
+	    <h:form>
+	    	<fieldset>
+	    	<legend>Search by last name</legend>
+	    	<h:panelGrid columns="4">
+	    		<h:outputText value="#{lbls.l_Name}"/>
+	    		<h:inputText id="lastName" value="#{customerBean.l_Name}" required="true" requiredMessage="#{lbls.requiredField}"/>
+	    		<h:commandButton value="#{lbls.search}" action="#{customerManager.searchByLastName()}"/>
+	    		<h:message for="lastName" style="color:red"/>
+	    	</h:panelGrid>
+	    	</fieldset>
+	    </h:form><br/>
+	    
+	    <h:form>
+	    	<fieldset>
+	    	<legend>Search by first name</legend>
+	    	<h:panelGrid columns="4">
+	    		<h:outputText value="#{lbls.f_Name}"/>
+	    		<h:inputText  id="searchFirstName" value="#{customerBean.f_Name}" required="true" requiredMessage="#{lbls.requiredField}"/>
+	    		<h:commandButton value="#{lbls.search}" action="#{customerManager.searchByFirstName()}"/>
+	    		<h:message for="searchFirstName" style="color:red"/>
+	    	</h:panelGrid>
+	    	</fieldset>
+	    </h:form><br/>
+	    
+	    <h:form>
+	    	<fieldset>
+	    	<legend>Search by Phone</legend>
+	    	<h:panelGrid columns="4">
+	    		<h:outputText value="#{lbls.home_Phone}"/>
+	    		<h:inputText  id="phone" value="#{customerBean.home_Phone}"  required="true" requiredMessage="#{lbls.requiredField}"/>
+	    		<h:commandButton value="#{lbls.search}" action="#{customerManager.searchByPhone()}"/>
+	    		<h:message for="phone" style="color:red"/>
+	    	</h:panelGrid>
+	    	</fieldset>
+	    </h:form><br/>
+	    
+	    <h:form>
+	    	<fieldset>
+	    	<legend>Search by Id</legend>
+	    	<h:panelGrid>
+	    		<h:outputText value="#{lbls.customerId}"/>
+	    		<h:inputText id="clientId" value="#{customerBean.customerId}" required="true" requiredMessage="#{lbls.requiredField}" />
+	    		<h:commandButton value="#{lbls.search}" action="#{customerManager.searchById()}"/>
+	    		<h:message for="clientId" style="color:red"/>
+	    	</h:panelGrid>
+	    	</fieldset>
+	    </h:form><br/>
+	    <h:messages />
+	    
+	</ui:define>
+	
+</ui:composition>
+</html>

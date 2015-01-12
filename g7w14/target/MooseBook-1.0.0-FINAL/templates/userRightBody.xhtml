@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<h:head> 
+<h:outputStylesheet library="css" name="userSiteStyle.css"  />
+</h:head>
+<!-- Created by: Sandro -->
+<h:body>
+<h:panelGroup  layout="block" id="rightBody">
+	<!-- Shopping Cart Box -->
+	<div class="wrapboite">
+		<h:panelGroup styleClass="boite" layout="block" id="shoppingCartRightBody">
+			<div id="tittle"><H6>Shopping Cart</H6></div>
+			<div>
+				<h:graphicImage library="images" name="#{bookManager.searchBookById(shoppingCartManager.latestCart[0].bookId)[0].image}" rendered = "#{not empty shoppingCartManager.cart}" alt="" id="sideShoppingCart" style="width:70px; height:95px;"/><br/>
+				 <h:outputText value="#{bookManager.searchBookById(shoppingCartManager.latestCart[0].bookId)[0].title}" style="font-size:10px; font-weight:bold;"></h:outputText> <br/>
+				<ui:repeat value="#{authorManager.getBookAuthors(shoppingCartManager.latestCart[0].bookId)}" var="item" >
+					<h:panelGroup layout="line" id="authorName" style="font-size: 10px;"> by #{item.authorFirstName} #{item.authorLastName} </h:panelGroup> 
+				</ui:repeat><br/>
+				<br/>
+				<h:outputText value="#{shoppingCartManager.latestCart[0].quantity}"></h:outputText> item(s) / $<h:outputText value="#{shoppingCartManager.latestCart[0].price}"></h:outputText>
+				<br/>
+				<h:link value="View Full Cart" outcome="userShoppingCart.xhtml?bookId=-1"></h:link>
+			</div>
+		</h:panelGroup>
+	</div>
+		
+	<!-- RSS Feed Box -->
+	<div class="wrapboite">
+		<h:panelGroup styleClass="boite" layout="block" id="rssFeedRightBody">
+			<div id="tittle"><H6>RSS Feed</H6></div>
+			<div id = "feed">
+				<!-- <h:graphicImage library="images" name="line.png" id="line"/> -->
+			
+			<script type="text/javascript" language="javascript" src="http://www.rssdog.com/index.htm?url=http%3A%2F%2Fwww2.dawsoncollege.qc.ca%2Fclass_cancellations%2Ffeed.xml&amp;mode=javascript&amp;showonly=&amp;maxitems=10&amp;showdescs=0&amp;desctrim=0&amp;descmax=0&amp;tabwidth=100%25&amp;linktarget=_blank&amp;bordercol=%23d4d0c8&amp;headbgcol=%23999999&amp;headtxtcol=%23ffffff&amp;titlebgcol=%23f1eded&amp;titletxtcol=%23000000&amp;itembgcol=%23ffffff&amp;itemtxtcol=%23000000&amp;ctl=0">
+			</script>
+			
+			</div>
+		</h:panelGroup>
+	</div>
+	
+	<!-- Ad Box -->
+	<div class="wrapboite">
+		<h:panelGroup styleClass="boite" layout="block" id="adRightBody">
+			<div id="tittle"><H6>Advertisement</H6></div>
+			<div id = "adLocation">
+				<!-- <h:graphicImage library="images" name="line.png" id="line"/> -->
+				<ui:repeat value="#{bannerManager.adchosen()}" var="item" >
+					<h:outputLink value="#{item.banner_Url}">
+						<h:graphicImage library="images" name="#{item.image_name}" alt="" />
+					</h:outputLink>
+				</ui:repeat>
+			</div>
+		</h:panelGroup>
+	</div>
+</h:panelGroup>
+</h:body>
+</html>

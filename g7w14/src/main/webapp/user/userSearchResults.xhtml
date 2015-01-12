@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<!-- Created by: Sandro, Martin
+ 	 Updated by Joseph He -->
+<h:head>
+	<h:outputStylesheet library="css" name="userSiteStyle.css" />
+</h:head>
+
+<ui:composition template="/templates/userTemplate.xhtml">
+	<ui:define name="content">
+
+		<h:panelGroup layout="block" id="title">Search Results</h:panelGroup>
+
+		<h:panelGroup layout="block" id="smallBooksByCategory">
+			<ui:repeat value="#{searchManager.searchResults}" var="item">
+				<h:panelGroup layout="block" id="smallBook1">
+					
+					<h:graphicImage library="images" name="#{item.image}"
+						id="image2" />
+					<br />
+					<br />
+					<h:link value="#{fn:substring(item.title,0,28)}..."
+						outcome="userGetBook?includeViewParams=true">
+						<f:param name="bookId" value="#{item.bookId}" />
+					</h:link>
+					<br />
+				    		by <ui:repeat
+						value="#{authorManager.getBookAuthors(item.bookId)}" var="author">
+				    		#{author.authorFirstName} #{author.authorLastName} <br/>
+				    		</ui:repeat>
+					
+				    		List Price: $#{item.listPrice}
+				    	</h:panelGroup>
+			</ui:repeat>
+		</h:panelGroup>
+
+	</ui:define>
+</ui:composition>
+</html>

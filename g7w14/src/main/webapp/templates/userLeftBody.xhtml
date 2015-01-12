@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<h:head> 
+<h:outputStylesheet library="css" name="userSiteStyle.css"  />
+</h:head>
+<!-- Created by: Sandro and Ian Ozturk-->
+<h:body>
+<h:panelGroup layout="block" id="leftBody">
+	<!-- Login Box -->
+	<div class="wrapboite">
+	<h:panelGroup styleClass="boite" layout="block" id="loginLeftBody">
+		<div id="tittle" >
+			<h:outputText rendered="#{not userBean.editable}"><H6>Login</H6> </h:outputText>
+			<h:outputText rendered="#{userBean.editable}"><H6>Welcome</H6> </h:outputText>
+		</div>
+		<div>
+			<!-- <h:graphicImage library="images" name="line.png" id="line"/> -->
+			<h:outputText rendered="#{not userBean.editable}">
+				<h:form>
+			   		<h:panelGrid columns="1">
+			   			<h:outputText value="#{lbls.username}:"/>
+			   			<h:inputText styleClass="usernameLeftBody" value="#{userBean.username}" id="usernameLeftBody" />
+		
+						<h:outputText value="#{lbls.password}:"/>
+			   			<h:inputSecret styleClass="passwordLeftBody" value="#{userBean.password}" id="passwordLeftBody" />
+			   		</h:panelGrid>
+
+			   		<h:commandButton styleClass="button" value="Login" action="#{loginActionBean.login}"/>
+		  		</h:form>
+				
+				Not a Registered User?
+				<h:outputText value="&lt;br/&gt;" escape="false" />
+				<h:link value="Click here to Register" outcome="userRegister" styleClass="registerLink"> </h:link>
+				<h:outputText value="&lt;br/&gt;" escape="false" />
+			</h:outputText>
+			<h:outputText rendered="#{userBean.editable}">
+				#{userBean.username} <br/> <br/> 			
+				<h:form>
+					<h:commandButton styleClass="button" value="Log Out" action="#{loginActionBean.logout()}"/>
+				</h:form>	
+			</h:outputText>
+		</div>
+	</h:panelGroup>
+	</div>
+	<!-- Categories Box -->
+	<div class="wrapboite">
+		<h:panelGroup styleClass="boite" layout="block" id="categoryLeftBody">
+			<div id="tittle"><H6>Categories</H6></div>
+			<div>
+				<!-- <h:graphicImage library="images" name="line.png" id="line"/> -->
+				<ui:repeat value="#{categoryManager.categoryNames}" var="item">
+			    	<h:outputText value="- "/>
+					<h:link value="#{item.name}" outcome="userGetCategory?includeViewParams=true">
+			    		<f:param name="categoryId" value="#{item.id}"/>
+			    		<f:param name="categoryName" value="#{item.name}"/>
+					</h:link><br/>
+				</ui:repeat>
+			</div>
+		</h:panelGroup>
+	</div>
+	
+	<!-- Poll Box -->
+	<div class="wrapboite">
+		<h:panelGroup styleClass="boite" layout="block" id="pollLeftBody">
+			<div id="tittle"><H6>Poll</H6></div>
+			<div id="poll">
+				<!-- <h:graphicImage library="images" name="line.png" id="line"/> -->
+				<h:form>
+			    	<h:outputText value="#{surveyManager.getSurveyQuestion()[0].question}"/> <br/>
+					<h:selectOneRadio value="#{surveyAnswer.survey_AnswersId}" layout="pageDirection" rendered="#{not surveyQuestion.answerSelected}">
+					   	<f:selectItems value="#{surveyManager.answers}" var="c" itemLabel="#{c.answer_Text}" itemValue="#{c.survey_AnswersId}"/>
+					</h:selectOneRadio>
+				    <h:commandButton styleClass="button" value="Submit" action="#{surveyManager.updateCount()}" rendered="#{not surveyQuestion.answerSelected}"/>
+				    <h:outputText value="&lt;br/&gt;" escape="false" />
+				    <ui:repeat value="#{surveyManager.answers}" var="item">
+				    	<h:outputText value="#{item.answer_Text} - #{item.answer_count}" escape="false" rendered="#{surveyQuestion.answerSelected}"/>
+				    	<h:outputText value="&lt;br/&gt;" escape="false" rendered="#{surveyQuestion.answerSelected}"/>
+				    </ui:repeat>
+			    </h:form>
+			</div>
+		</h:panelGroup>
+	</div>	
+</h:panelGroup>
+</h:body>
+</html>
